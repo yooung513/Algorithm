@@ -37,9 +37,8 @@ else:
 
 
 # K번째 수
-# 나의 풀이
-# : 풀이는 강의와 유사하다.
-#   리스트를 덮어써도 될 수 있는 것을 인지하고 있자.
+# 나의 풀이 = 강의
+# : 리스트를 덮어써도 될 수 있는 것을 인지하고 있자.
 #   또한, print 표현식도 인지하고 있자.
 t = int(input())
 for _ in range(t):
@@ -53,3 +52,19 @@ for _ in range(t):
 
 
 # K번째 큰 수
+# 나의 풀이 = 강의
+# : 처음에 i, j, k를 변수로 사용해 k값이 변하는 문제가 있었다.
+#   변수 설정할 때 주의할 것
+n, k = map(int, input().split())
+card = list(map(int, input().split()))
+res = set()
+
+for x in range(n):
+    for y in range(x + 1, n):
+        for z in range(y + 1, n):
+            res.add(card[x] + card[y] + card[z])
+
+res = list(res)
+res.sort(reverse=True)
+
+print(res[k - 1])
