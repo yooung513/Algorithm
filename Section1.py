@@ -101,7 +101,6 @@ print(avg, midx+1)
 #    c = int(c)     -> 소수점을 없애는 작업
 
 # 기존 풀이
-#대표값
 n = int(input())
 score = list(map(int, input().split()))
 
@@ -119,3 +118,57 @@ for i in range(avr):
 
 chk.sort(key = lambda x : (-x[0], x[1]))
 print(avr, chk[0][1])
+
+
+
+# 정다면체
+# 나의 풀이 (강의와 같음)
+n, m = map(int, input().split())
+chk = [0] * (n+m+1)
+for i in range(1, n+1):
+    for j in range(1, m+1):
+        chk[i+j] += 1
+
+mcnt = max(chk)
+for idx, val in enumerate(chk):
+    if val == mcnt:
+        print(idx, end=" ")
+
+
+
+# 자릿수의 합
+# 나의 풀이 -> 강제 변환 사용
+n = int(input())
+num = list(map(int, input().split()))
+
+res = []
+for i, x in enumerate(num):
+    tmp = list(str(x))
+    snum = 0
+    for t in  tmp:
+        snum += int(t)
+    res.append((snum, i))
+
+res.sort(key= lambda x: (-x[0], x[1]))
+print(num[res[0][1]])
+
+# 나의 풀이 -> 함수 사용
+def digit_sum(x):
+    res = 0
+    while x > 0:
+        res += x%10
+        x = x//10
+    return res
+
+n = int(input())
+num = list(map(int, input().split()))
+
+mx = 0
+ans = 0
+for x in num:
+    tot = digit_sum(x)
+    if tot > mx:
+        mx = tot
+        ans = x
+
+print(x)
