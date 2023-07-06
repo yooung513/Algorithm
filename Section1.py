@@ -36,8 +36,9 @@ else:
     print(-1)
 
 
+
 # K번째 수
-# 나의 풀이 = 강의
+# 나의 풀이 (강의와 유사)
 # : 리스트를 덮어써도 될 수 있는 것을 인지하고 있자.
 #   또한, print 표현식도 인지하고 있자.
 t = int(input())
@@ -49,6 +50,7 @@ for _ in range(t):
     new.sort()
     print(new[k - 1])
     print("%d" % (new[k - 1]))
+
 
 
 # K번째 큰 수
@@ -68,3 +70,52 @@ res = list(res)
 res.sort(reverse=True)
 
 print(res[k - 1])
+
+
+
+# 대표값
+# 나의 풀이 (강의와 유사)
+n = int(input())
+sco = list(map(int, input().split()))
+
+avg = round(sum(sco)/n)
+
+mabs = abs(avg - sco[0])
+midx = 0
+for idx, val in enumerate(sco):
+    if abs(avg-val) <= mabs:
+        if sco[midx] < val:
+            mabs = abs(avg-val)
+            midx = idx
+
+print(avg, midx+1)
+
+# round 함수는 round_half_even 방식이므로 정확하게 반을 나타내면 짝수로 표기한다.
+# 예) a = round(4.500)
+#   > a = 4
+#    b = round(66.5)
+#   > b = 67
+# 따라서, 첫째 자리에서 정확하게 반올림 하기 위해서는 정수형 변환을 사용한다.
+# 예) c = 66.5
+#    c = c + 0.5    -> 반올림 값 
+#    c = int(c)     -> 소수점을 없애는 작업
+
+# 기존 풀이
+#대표값
+n = int(input())
+score = list(map(int, input().split()))
+
+avr = int((sum(score)/n)+0.5)
+chk = []
+for i in range(avr):
+  for idx, val in enumerate(score):
+    if avr+i == val:
+      chk.append((val, idx+1))
+    if avr-i == val:
+      chk.append((val, idx+1))
+  
+  if len(chk) > 0:
+    break
+
+chk.sort(key = lambda x : (-x[0], x[1]))
+print(avr, chk[0][1])
