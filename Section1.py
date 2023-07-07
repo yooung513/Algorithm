@@ -172,3 +172,55 @@ for x in num:
         ans = x
 
 print(x)
+
+
+
+# 소수 (에라토스테네스 체)
+# 나의 풀이
+# 강의 풀이는 변수를 지정해서 카운트
+n = int(input())
+chk = [1] * (n+1)
+
+for i in range(2, n+1):
+    if chk[i] == 1:
+        for j in range(i*2, n+1, i):
+            chk[j] = 0
+
+print(sum(chk[2:]))
+
+
+
+# 뒤집은 소수
+# 나의 풀이 
+def reverse(x):
+    res = 0
+    while x > 0:
+        res *= 10
+        res += x % 10 
+        x = x // 10
+    return res
+
+def isPrime(x):
+    chk = [0] * (x+1)
+    for i in range(2, x+1):
+        if chk[i] == 0:
+            for j in range(i*2, x+1, i):
+                chk[j] = 1
+
+    if chk[x] == 0:
+        return True
+    else: 
+        return False
+
+n = int(input())
+num = list(map(int, input().split()))
+
+for n in num:
+    x = reverse(n)
+    
+    if isPrime(x) == True:
+        print(x, end=" ")
+
+
+
+
