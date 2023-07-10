@@ -223,4 +223,43 @@ for n in num:
 
 
 
+# 주사위 게임
+# 나의 풀이
+n = int(input())
 
+res = 0 
+for _ in range(n):
+    a, b, c = map(int, input().split())
+    
+    if a == b and b == c:
+        tmp = 10000 + a*1000
+    elif a != b and b != c and c != a:
+        tmp = max(a, b, c) * 100
+    else : 
+        if b == c:
+            tmp = 1000 + b*100
+        else:
+            tmp = 1000 + a*100
+
+    res = max(res, tmp)
+
+print(res) 
+
+
+
+# 점수계산
+# 나의 풀이
+n = int(input())
+sco = list(map(int, input().split()))
+
+res = 0
+plus = 0
+for s in sco:
+    if s == 0:
+        plus = 0
+    else: 
+        plus += s
+
+    res += plus
+
+print(res)
