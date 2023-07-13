@@ -1,38 +1,25 @@
 # Section 2. 탐색 & 시뮬레이션
 
 # 회문 문자열 검사
+# 나의 풀이 -> 파이썬 기능 활용
+n = int(input())
+for _ in range(n):
+    word = input().lower()
+    if word == word[::-1]:
+        print("YES")
+    else:
+        print("NO")
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+#직접 구현문
+n = int(input())
+for _ in range(n):
+    word = input().lower()
+    for i in range(len(word)//2):
+        if word[i] != word[-1-i]:
+            print("NO")
+            break
+    else:
+        print("YES")
 
 
 
@@ -121,3 +108,30 @@ elif mp < ms:
 
 for x in res:
     print(x, end=" ")
+
+
+
+# 수들의 합 (**)
+# 나의 풀이
+n, m = map(int, input().split())
+a = list(map(int, input().split()))
+
+s, e, cnt = 0, 0, 0 
+while s <= e and e < n:
+    chk = 0
+    for i in range(s, e+1):
+        chk += a[i]
+
+    if chk == m:
+        cnt += 1
+        s += 1
+        e += 1
+    elif chk < m :
+        e += 1
+    else:
+        s += 1
+
+print(cnt)
+
+# 강의 자료
+# 인덱스 위치 표시를 활용
