@@ -135,3 +135,24 @@ print(cnt)
 
 # 강의 자료
 # 인덱스 위치 표시를 활용
+n, m = map(int, input().split())
+a = list(map(int, input().split()))
+
+l, r = 0, 1
+tot, cnt = a[l], 0
+while True:
+    if tot < m:
+        if r < n:
+            tot += a[r]
+            r += 1
+        else:
+            break
+    elif tot == m:
+        cnt += 1
+        tot -= a[l]
+        l += 1
+    else:
+        tot -= a[l]
+        l += 1
+         
+print(cnt)
