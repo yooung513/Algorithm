@@ -156,3 +156,181 @@ while True:
         l += 1
          
 print(cnt)
+
+# 인덱스를 활용하는 방법 우선 생각하기!
+
+
+
+# 격자판 최대합
+# 나의 풀이 -> max 함수 사용
+# 변수를 최대값으로 초기화 하는 방법 존재
+n = int(input())
+a = []
+for _ in range(n):
+    tmp = list(map(int, input().split()))
+    a.append(tmp)
+
+mx1 = 0
+for i in range(n):
+    tmpr, tmpc = 0, 0
+    for j in range(n):
+        tmpr += a[i][j]
+        tmpc += a[j][i]
+    mx1 = max(mx1, tmpr, tmpc)
+
+mx2, tmpl, tmpr = 0, 0, 0
+for x in range(n):
+    tmpl += a[x][x]
+    tmpr += a[x][n-1-x]
+    mx2 = max(tmpl, tmpr)
+
+print(max(mx1, mx2))
+
+# 격자판 값 입력 방법
+a = [list(map(int, input().split())) for _ in range(n)]
+
+
+
+# 사과나무 (다이아몬드)
+# 나의 풀이 
+n = int(input())
+a = [list(map(int, input().split())) for _ in range(n)]
+
+s, e = n//2, n//2
+res = 0
+for i in range(n):
+    for j in range(s, e+1):
+        res += a[i][j]
+    if i < n//2:
+        s -= 1
+        e += 1
+    else:
+        s += 1
+        e -= 1
+
+print(res)
+
+
+
+# 곶감 (모래시계)
+# 오른쪽으로 회전하는 경우 앞으로 insert 하는 것 잘 알아두기
+n = int(input())
+a = [list(map(int, input().split())) for _ in range(n)]
+
+m = int(input())
+for _ in range(m):
+    x, y, z = map(int, input().split())
+    if y == 0:
+        for _ in range(z):
+            a[x-1].append(a[x-1].pop(0))
+    else:
+        for _ in range(z):
+            a[x-1].insert(0, a[x-1].pop())
+
+s, e, res = 0, n-1, 0
+for i in range(n):
+    for j in range(s, e+1):
+        res += a[i][j]
+    if i < n//2:
+        s += 1
+        e -= 1
+    else:
+        s -= 1
+        e += 1
+
+print(res)
+
+
+
+# 봉우리
+n = int(input())
+a = [list(map(int, input().split())) for _ in range(n)]
+a.insert(0, [0]*n)
+a.append([0]*n)
+for i in range(len(a)):
+    a[i].insert(0, 0)
+    a[i].append(0)
+
+dx = [-1, 0, 1, 0]
+dy = [0, 1, 0, -1]
+cnt = 0
+for x in range(1, n+1):
+    for y in range(1, n+1):
+        for i in range(4):
+            xx = x + dx[i]
+            yy = y + dy[i]
+            if a[x][y] <= a[xx][yy]:
+                break
+        else:
+            cnt += 1
+
+print(cnt)
+
+# 강의 -> 한 번에 상하좌우 변수 체크하기 -> all 사용
+for i in range(1, n+1):
+    for j in range(1, n+1):
+        if all( a[i][j] > a[i+dx[k]][j+dy[k]] for k in range(4)):
+            cnt += 1
+
+
+
+# 스도쿠 검사 (4중 for문)
+a = [list(map(int, input().split())) for _ in range(9)]
+chkr = [0]*10
+chkc = [0]*10
+for i in range(9):
+    for j in range(9):
+        chkr[a[i][j]] = 1
+        chkc[a[j][i]] = 1
+    if sum(chkr) != 9 or sum(chkc) != 9:
+        print("NO")
+        break
+    else:
+        chkr = [0]*10
+        chkc = [0]*10
+
+if sum(chkr) == 9 and sum(chkc) == 9:
+    chk = [0]*10
+    for x in range(0, 9, 3):
+        for y in range(0, 9, 3):
+            for i in range(3):
+                for j in range(3):
+                    chk[a[i+x][j+y]] = 1
+        if sum(chk) != 9:
+            print("NO")
+            break
+        else:
+            chk = [0]*10
+    else:
+        print("YES")
+
+# 함수로 검사한 후 return 값 활용하기
+def check(a):
+    # 행-열 검사
+    for i in range(9):
+        chk1 = [0]*10   # 초기화
+        chk2 = [0]*10 
+        for j in range(9):
+            chk1[a[i][j]] = 1
+            chk2[a[i][j]] = 1
+        if sum(chk1) != 9 or sum(chk2) != 9:
+            return False #break로 함수 종료 역할까지 가능
+
+    # 그룹검사
+    for i in range(3):
+        for j in range(3):
+            chk3 = [0]*10
+            for k in range(3):
+                for s in range(3):
+                    chk3[a[i*3+k][j*3+s]] = 1
+            if sum(chk3) != 9:
+                return False
+    return True
+
+a = [list(map(int, input().split())) for _ in range(9)]
+if check(a):
+    print("YES")
+else:
+    print("NO")
+
+
