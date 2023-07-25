@@ -32,3 +32,104 @@ while lt <= rt:
             rt = mid - 1
         else:
             lt = mid + 1
+
+
+# 랜선 자르기
+k, n = map(int, input().split())
+line = list(int(input()) for _ in range(k))
+
+def check(n):
+    cnt = 0
+    for x in line:
+        cnt += x//n
+    return cnt
+
+max_line = 0
+lt = 0
+rt = min(line)
+
+while lt <= rt:
+    mid = (lt+rt)//2
+    if check(mid) >= n:
+        max_line = max(max_line, mid)
+        lt = mid + 1
+    else:
+        rt = mid - 1
+
+print(max_line)
+
+    
+
+# 뮤직비디오
+n, m = map(int, input().split())
+song = list(map(int, input().split()))
+
+def cnt(cap):
+    cnt = 0
+    chk = 0
+    for s in song:
+        chk += s
+        if chk > cap:
+            cnt += 1
+            chk = s
+        elif chk == cap:
+            cnt += 1
+            chk = 0 
+    if chk > 0:
+        cnt += 1
+    return cnt 
+
+lt = 0
+rt = sum(song)
+min_cap = 2147000000
+while lt <= rt:
+    mid = (lt+rt)//2
+    if cnt(mid) <= m:
+        min_cap = min(min_cap, mid)
+        rt = mid - 1
+    else:
+        lt = mid + 1
+        
+print(min_cap)
+
+# -> 논리 문제 발생 
+# 9개의 노래를 9개의 DVD에 담을 경우 최소 용량은 가장 큰 노래여야 함
+n, m = map(int, input().split())
+song = list(map(int, input().split()))
+
+def cnt(cap):
+    cnt = 0
+    chk = 0
+    for s in song:
+        chk += s
+        if chk > cap:
+            cnt += 1
+            chk = s
+        elif chk == cap:
+            cnt += 1
+            chk = 0 
+    if chk > 0:
+        cnt += 1
+    return cnt 
+
+lt = max(song)
+rt = sum(song)
+min_cap = 2147000000
+while lt <= rt:
+    mid = (lt+rt)//2
+    if cnt(mid) <= m:
+        min_cap = min(min_cap, mid)
+        rt = mid - 1
+    else:
+        lt = mid + 1
+        
+print(min_cap)
+# lt의 범위 변경
+
+
+
+# 마구간 정하기 (결정 알고리즘)
+
+
+
+# 회의실 배정
