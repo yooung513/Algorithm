@@ -1,4 +1,4 @@
-## Algorithm 알고리즘 학습
+## Algorithm
 
 1. 자료구조 <br>
    Notion : https://www.notion.so/dayounglee0513/1-48ea955b69c04afd8a0a11e31246c57d?pvs=4
