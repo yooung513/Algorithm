@@ -65,6 +65,7 @@ else:
 
 # 풀이
 # 파이썬에서도 사용 가능!! -> 시간 복잡도가 좀 더 유연함
+# ! 스택의 최상위 원소 top()보다 작은 값을 꺼내는 것은 불가능 -> NO
 n = int(input())
 
 cnt = 1
@@ -85,6 +86,37 @@ for i in range(1, n+1):     # 데이터 개수만큼 반복
         exit(0)             # 코드 종료 (프로그램 실행 종료)
 
 print('\n'.join(res))
+
+# 유사 방법
+import sys
+input = sys.stdin.readline
+
+n = int(input())    
+stack = []      # 스택 초기화
+answer = []     # 최종 정답
+current = 1     # 현재 삽입할 수 (조건에 의해 오름차순으로 증가함을 확인)
+
+for _ in range(n):
+    x = int(input())
+
+    # top보다 x가 더 큰 경우, 스택에 삽입
+    while stack or stack[-1] < x:
+        stack.append(current)
+        current += 1
+        answer.append('+')
+
+    # top과 x가 같다면, 스택에서 제거
+    if stack[-1] == x:
+        stack.pop()
+        answer.append('-')
+
+    # top보다 x가 작은 경우, 불가능
+    else:
+        answer = ['NO']
+        break
+
+for x in answer:
+    print(x)
 
 
 
@@ -203,3 +235,160 @@ for x in res:
 
 # 스택 연결 방법
 l.extend(reversed(r))
+
+
+
+# 수찾기
+n = int(input())
+num = list(map(int, input().split()))
+m = int(input())
+chk = list(map(int, input().split()))
+res = []
+num = set(num)
+
+for x in chk:
+    if x in num:
+        res.append(1)
+    else:
+        res.append(0)
+
+for x in res:
+    print(x)
+
+# 풀이
+# 처음부터 셋으로 받음 -> 순서에 영향을 받지 않음
+n = int(input())
+arr = set(map(int, input().split()))
+m = int(input())
+x = list(map(int, input()))
+
+for i in x:
+    if i not in arr:
+        print('0')
+    else:
+        print('1')
+
+
+
+# 친구 네트워크
+# 나의 풀이 -> 못품
+t = int(input())
+
+for _ in range(t):
+    f = int(input())
+    frd = []
+    chk = set()
+
+    for i in range(f):
+        x, y = map(str, input().split())
+        frd.append({x, y})
+        n = 0
+        while n <= i:
+            tmp = frd[n]
+            if len(chk & tmp) == 0:
+                chk = tmp | chk
+                print(2)
+                break
+            else:
+                chk = tmp | chk
+                n += 1
+        print(len(chk))
+
+# 강의
+# Union-Find (합집합 찾기) 사용
+def find (x):          # 최상단 부모노드 찾음
+    if x == parent[x]:
+        return x
+    else:
+        p = find(parent[x])
+        parent[x] = p
+        return parent[x]
+    
+def union(x, y):
+    x = find(x)
+    y = find(y)
+
+    if x != y:          # 연결되어 있지 않음
+        parent[y] = x   # 왼쪽 값을 부모로
+        number[x] += number[y]
+
+
+t = int(input())
+
+for _ in range(t):
+    parent = dict()
+    number = dict()
+
+    f = int(input())
+    for _ in range(f):
+        x, y = input().split()
+
+        if x not in parent:
+            parent[x] = x
+            number[x] = 1
+        if y not in parent:
+            parent[y] = y
+            number[y] = 1
+        
+        union(x, y)     # 네트워크 합집합
+
+        print(number[find(x)])  # 값 찾아서 네트워크 크기 출력
+
+
+
+# 스택
+# 빠른 입력 함수 사용 ***
+import sys
+input = sys.stdin.readline      # 빠른 입력 함수 사용
+
+n = int(input())
+stk = []
+
+for _ in range(n):
+    order = input().strip()
+    if order == "pop":
+        if stk:
+            print(stk.pop())
+        else:
+            print(-1)
+    elif order == "size":
+        print(len(stk))
+    elif order == "empty":
+        if stk:
+            print(0)
+        else:
+            print(1)
+    elif order == "top":
+        if stk:
+            print(stk[-1])
+        else:
+            print(-1)
+    else:
+        num = list(order.split())
+        x = int(num[1])
+        stk.append(x)
+
+# * sys.stdin.readline -> 입력 받은 문자 끝에 개행 문자 표함
+#   따라서 strip()으로 개행문자 제거, split()써서 묶은 후 cmd[0] 값과 비교하기
+
+
+
+# 제로
+# 빠른 입력 함수 사용 가능
+import sys
+input = sys.stdin.readline
+
+x = int(input())
+# 정수의 경우 그대로 사용
+
+k = int(input())
+stk = []
+
+for _ in range(k):
+    x = int(input())
+    if x == 0:
+        stk.pop()
+    else:
+        stk.append(x)
+
+print(sum(stk))
