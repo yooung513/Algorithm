@@ -18,7 +18,7 @@ else:
 
 
 
-# 블랙잭
+# 백준 2798. 블랙잭
 n, m = map(int, input().split())
 card = list(map(int, input().split()))
 
@@ -34,7 +34,7 @@ print(res)
 
 
 
-# 스택수열
+# 백준 1874. 스택수열
 # python의 경우 시간초과
 n = int(input())
 num = [i for i in range(1, n+1)]
@@ -120,7 +120,7 @@ for x in answer:
 
 
 
-# 프린터 큐
+# 백준 1966. 프린터 큐
 from collections import deque
 
 t = int(input())
@@ -173,7 +173,7 @@ for _ in range(test_case):
 
 
 
-# 키로거
+# 백준 5397. 키로거
 # 나의 풀이 -> 시뮬레이션 방식 불가 (테스트 길이 1,000,000)
 # 런타임 에러 발생
 t = int(input())
@@ -238,7 +238,7 @@ l.extend(reversed(r))
 
 
 
-# 수찾기
+# 백준 1920. 수찾기
 n = int(input())
 num = list(map(int, input().split()))
 m = int(input())
@@ -270,7 +270,7 @@ for i in x:
 
 
 
-# 친구 네트워크
+# 백준 4195. 친구 네트워크
 # 나의 풀이 -> 못품
 t = int(input())
 
@@ -336,7 +336,7 @@ for _ in range(t):
 
 
 
-# 스택
+# 백준 10838. 스택
 # 빠른 입력 함수 사용 ***
 import sys
 input = sys.stdin.readline      # 빠른 입력 함수 사용
@@ -373,7 +373,7 @@ for _ in range(n):
 
 
 
-# 제로
+# 백준 10773. 제로
 # 빠른 입력 함수 사용 가능
 import sys
 input = sys.stdin.readline
@@ -392,3 +392,111 @@ for _ in range(k):
         stk.append(x)
 
 print(sum(stk))
+
+
+
+# 백준 17298. 오큰수
+# 1차 -> 시간초과
+import sys
+from collections import deque
+input = sys.stdin.readline
+
+n = int(input())
+a = list(map(int, input().split()))
+b = deque(a)
+res = []
+
+for i in range(n):
+    tmp = b.popleft()
+    for j in range(i+1, n):
+        if tmp < a[j]:
+            res.append(a[j])
+            break
+    else:
+        res.append(-1)
+
+print(*res)
+
+
+# 풀이
+import sys
+from collections import deque
+input = sys.stdin.readline
+
+n = int(input())
+a = list(map(int, input().split()))
+nge = [-1] * n
+stk = []
+
+for i in range(n):
+    tmp = a[i]
+
+    # 스택의 top이 tmp보다 작거나 같음 / 스택이 비어있음 -> 원소 추가
+    if len(stk) == 0 or stk[-1][1] >= tmp:
+        stk.append((i, tmp))
+    
+    # 스택의 상단 값보다 큼 -> 오큰수
+    else:
+        while stk:
+            idx, val = stk.pop()
+            if val >= tmp:      # 크거나 같은 이전 원소를 만났다면 다시 삽입
+                stk.append((idx, val))
+                break
+            else:               # 오큰수 기록
+                nge[idx] = tmp  
+        stk.append((i, tmp))
+
+print(*nge)
+
+
+
+# 백준 1021. 회전하는 큐
+from collections import deque
+
+n, m = map(int, input().split())
+num = [i for i in range(1, n+1)]
+rmv = list(map(int, input().split()))
+num = deque(num)
+
+res = 0
+for i in range(m):
+    left = num.index(rmv[i])
+    right = len(num) - left
+
+    if left <= right:
+        for _ in range(left):
+            num.append(num.popleft())
+        res += left
+
+    elif left > right:
+        for _ in range(right):
+            num.insert(0, num.pop())
+        res += right
+
+    num.popleft()
+
+print(res)
+
+
+
+# 백준 11866. 요세푸스 문제 0
+from collections import deque
+
+n, k = map(int, input().split())
+a = deque(i for i in range(1, n+1))
+res = []
+
+cnt = 0
+while a:
+    now = a.popleft()
+    cnt += 1
+    if cnt == k:
+        res.append(now)
+        cnt = 0
+    else:
+        a.append(now)
+
+print('<' + ', '.join(map(str, res)) + '>')
+
+
+
