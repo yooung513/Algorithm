@@ -531,7 +531,7 @@ print(*res)
 
 
 
-# 트럭
+# 백준 13335. 트럭
 from collections import deque
 
 n, w, l = map(int, input().split())
@@ -563,7 +563,7 @@ print(time)
 
 
 
-# 나는 요리사다
+# 백준 2953. 나는 요리사다
 sco = [0]*5
 
 for i in range(5):
@@ -572,3 +572,116 @@ for i in range(5):
 
 res = max(sco)
 print(sco.index(res)+1, res)
+
+
+
+# 백준 11286. 절댓값 힙
+import sys
+import heapq as hq
+
+input = sys.stdin.readline
+
+n = int(input())
+arr = []
+
+for _ in range(n):
+    x = int(input())
+
+    if x == 0:
+        if len(arr) == 0:
+            print(0)
+        else:
+            y = hq.heappop(arr)
+            print(y[1])
+
+    else:
+        hq.heappush(arr, (abs(x), x))
+
+
+
+####
+
+
+
+# 백준 20040. 사이클 게임
+import sys
+input = sys.stdin.readline
+
+def find(x):
+    if arr[x] == x:
+        return x
+    else:
+        p = find(arr[x])
+        arr[x] = p
+        return arr[x]
+
+def union(x, y):
+    x = find(x)
+    y = find(y)
+    
+    if x != y:
+        arr[y] = x
+
+
+n, m = map(int, input().split())
+arr = [i for i in range(n)]
+vis = set()
+fir = 0
+
+for i in range(m):
+    x, y = map(int, input().split())
+
+    if x > y:
+        x, y = y, x
+    
+    if (x, y) not in vis:
+        vis.add((x, y))
+
+        if find(x) == find(y) :
+            fir = i+1
+            break
+        else:
+            union(x, y)
+    
+print(fir)
+
+
+
+# 백준 11724. 연결 요소의 개수
+import sys
+input = sys.stdin.readline
+
+def find(x):
+    if x == res[x]:
+        return x
+    else:
+        p = find(res[x])
+        res[x] = p
+        return res[x]
+
+def union(x, y):
+    x = find(x)
+    y = find(y)
+
+    if x > y:
+        res[x] = y
+    else:
+        res[y] = x
+
+
+n, m = map(int, input().split())
+res = [i for i in range(n+1)]
+
+for _ in range(m):
+    x, y = map(int, input().split())
+    
+    if x > y:
+        x, y = y, x
+
+    union(x, y)
+
+ans = set()
+for i in range(1, n+1):
+    ans.add(find(res[i]))
+
+print(len(ans))
