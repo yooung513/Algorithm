@@ -500,3 +500,75 @@ print('<' + ', '.join(map(str, res)) + '>')
 
 
 
+# 백준 2346. 풍선 터뜨리기
+# 구현 제대로 하기!!
+from collections import deque
+
+n = int(input())
+bal = deque((idx+1, val) for idx, val in enumerate(map(int, input().split())))
+res = []
+
+now = bal.popleft()
+idx = now[0]
+val = now[1]
+
+res.append(idx)
+
+for i in range(n-1):
+    if val > 0:
+        for _ in range(val-1):
+            bal.append(bal.popleft())
+    else:
+        for _ in range(-val):
+            bal.appendleft(bal.pop())
+    
+    now = bal.popleft()
+    idx = now[0]
+    val = now[1]
+    res.append(idx)
+
+print(*res)
+
+
+
+# 트럭
+from collections import deque
+
+n, w, l = map(int, input().split())
+tr = deque(map(int, input().split()))
+can = [0] * w
+can = deque(can)
+
+time = 0
+while tr:
+    for i in range(w):
+        time += 1
+        can.popleft()
+        if len(tr) != 0:
+            now = tr.popleft()
+            can.append(now)
+        else:
+            can.append(0)
+
+        if sum(can) > l:
+            tr.appendleft(can.pop())
+            can.append(0)
+            break
+
+while sum(can) > 0:
+    time += 1
+    can.popleft()
+
+print(time)
+
+
+
+# 나는 요리사다
+sco = [0]*5
+
+for i in range(5):
+    tmp = list(map(int, input().split()))
+    sco[i] = sum(tmp)
+
+res = max(sco)
+print(sco.index(res)+1, res)
