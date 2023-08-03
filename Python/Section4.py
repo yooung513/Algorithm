@@ -330,4 +330,44 @@ while True:
 
 
 
-# 최대 힙
+# 힙 -> 이진트리 사용
+# 최소 힙의 경우 부모 노드의 값이 자식의 노드 값보다 작고,
+# 최대 힙의 경우 부모 노드의 값이 자식의 노드 값보다 크다.
+# 레벨 순서로 입력이 된 후 값을 비교한 후 자리를 변경
+# 입력된 자리에서 부모보다 값이 작으면 그대로 멈춰진다. 
+# heappush : 레벨 위치에 값 입력 - 값에 따라 upheap 진행
+# heappop : 부모노드 값 출력 - 가장 아래 래밸의 오른쪽 노드 값을 근노드로 올린 후 값에 따라 downheap 진행
+# 시간 복잡도는 NlogN으로 나타난다 (힙정렬)
+
+#회소힙 (Default heqp)
+import heapq as hq
+
+a = []  # 리스트를 활용해 자료값 입력 (heap 함수에 사용)
+while True:
+    n = int(input())
+    if n == -1:
+        break
+    if n == 0:
+        if len(a) == 0:
+            print(-1)
+        else:
+            print(hq.heappop(a))
+    else:
+        hq.heappush(a, n)       # a트리에, n값을 push
+
+
+# 최대힙
+import heapq as hq
+
+a = []
+while True:
+    n = int(input())
+    if n == -1:
+        break
+    if n == 0:
+        if len(a) == 0:
+            print(-1)
+        else:
+            print(hq.heappop(a))
+    else:
+        hq.heappush(a, -n)
