@@ -685,3 +685,76 @@ for i in range(1, n+1):
     ans.add(find(res[i]))
 
 print(len(ans))
+
+
+
+# 백준 1233. 주사위
+a, b, c = map(int, input().split())
+res = dict()
+
+for i in range(1, a+1):
+    for j in range(1, b+1):
+        for k in range(1, c+1):
+            s = i+j+k
+            if s in res.keys():
+                res[s] += 1
+            else:
+                res[s] = 1
+
+num = 0
+ans = 0
+for s, n in res.items():
+    if n > num:
+        num = n
+        ans = s
+
+print(ans)
+
+
+
+# 백준 1374. 강의실
+# 메모리 초과
+import sys
+input = sys.stdin.readline
+
+n = int(input())
+rec = dict()
+
+for _ in range(n):
+    num, std, end = map(int, input().split())
+
+    for i in range(std, end):
+        if i in rec.keys():
+            rec[i] += 1
+        else:
+            rec[i] = 1
+
+print(max(rec.values()))
+
+
+
+# 백준 1374. 강의실
+import heapq as hq
+
+import sys
+input = sys.stdin.readline
+
+n = int(input())
+lec = []
+for _ in range(n):
+    num, str, end= map(int, input().split())
+    hq.heappush(lec, (str, end))
+
+room = []
+e = hq.heappop(lec)[1]
+hq.heappush(room, e)
+for _ in range(n-1):
+    new_str, new_end = hq.heappop(lec)
+    org = hq.heappop(room)
+
+    if new_str < org:       # 겹치는 경우
+        hq.heappush(room, org)
+
+    hq.heappush(room, new_end)
+
+print(len(room))
