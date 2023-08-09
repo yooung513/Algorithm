@@ -58,6 +58,29 @@ while lt <= rt:
 
 print(max_line)
 
+# 값의 범위 변화 -> 랜선 하나의 최대 길이로 해야함
+import sys
+input = sys.stdin.readline
+
+def Count(L):
+    cnt = 0
+    for x in line:
+        cnt += x//L
+    return cnt
+
+k, n = map(int, input().split())
+line = [int(input()) for _ in range(k)]
+
+lt = 1
+rt = max(line)
+while lt <= rt:
+    mid = (lt+rt)//2
+    if Count(mid) >= n:
+        res = mid
+        lt += 1
+    else:
+        rt -= 1
+print(res)
     
 
 # 뮤직비디오
@@ -129,7 +152,36 @@ print(min_cap)
 
 
 # 마구간 정하기 (결정 알고리즘)
+import sys
+input = sys.stdin.readline
 
+def Count(L):
+    cnt = 1
+    ep = x[0]
+    for i in range(1, n):
+        if x[i] - ep >= L:
+            cnt += 1
+            ep = x[i]
+    return cnt
+
+
+
+n, c = map(int, input().split())
+x = [int(input()) for _ in range(n)]
+x.sort()
+
+lt = 1
+rt = x[-1]
+res = 0
+while lt <= rt:
+    mid = (lt+rt)//2
+    if Count(mid) >= c:
+        res = mid
+        lt = mid+1
+    else:
+        rt = mid-1
+
+print(res)
 
 
 # 회의실 배정
