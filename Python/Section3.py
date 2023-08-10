@@ -833,3 +833,110 @@ for tmp in it.combinations(range(1, n+1), m):
     cnt += 1
     print(*tmp)
 print(cnt)
+
+
+
+# 인접행렬 (가중치 그래프)
+import sys
+input = sys.stdin.readline
+
+n, m = map(int, input().split())
+arr = [[0]*n for _ in range(n)]
+
+for _ in range(m):
+    s, e, w = map(int, input().split())
+    arr[s-1][e-1] = w
+
+for x in arr:
+    print(*x)
+
+
+
+#무방향 그래프 인접행렬
+import sys
+input = sys.stdin.readline
+
+n, m = map(int, input().split())
+arr = [[0]*(n+1) for _ in range(n+1)]
+
+for _ in range(m):
+    s, e = map(int, input().split())
+    arr[s][e] += 1
+    arr[e][s] += 1
+
+for i in range(1, n+1):
+    for j in range(1, n+1):
+        print(arr[i][j], end=' ')
+    print()
+
+
+
+# 경로 탐색
+import sys 
+iuput = sys.stdin.readline
+
+def Solve(v):
+    global cnt 
+
+    if v == n:      # 종착 노드에 도착
+        cnt += 1
+
+    else:
+        # 인접 노드로 이동
+        for i in range(1, n+1):
+            if arr[v][i] == 1 and chk[i] == 0:
+                chk[i] = 1
+                Solve(i)
+                chk[i] = 0
+    
+
+n, m = map(int, input().split())
+arr = [[0]*(n+1) for _ in range(n+1)]
+chk = [0]*(n+1) # 중복 방지용
+
+for _ in range(m):
+    s, e = map(int, input().split())
+    arr[s][e] += 1
+
+cnt = 0
+chk[1] = 1
+Solve(1)
+
+print(cnt)
+
+
+
+# 최대 점수 구하기
+import sys 
+iuput = sys.stdin.readline
+
+def Solve(idx, sco, time):
+    global res
+
+    if time > m:
+        return
+    
+    if idx == n:
+        if sco > res:
+            res = sco
+            return
+
+    else:
+        Solve(idx+1, sco+arr[idx][0], time+arr[idx][1])
+        Solve(idx+1, sco, time)
+
+   
+
+n, m = map(int, input().split())
+arr = []
+for _ in range(n):
+    s, t = map(int, input().split())
+    arr.append((s, t))
+
+res = 0
+
+Solve(0, 0, 0)
+print(res)
+
+
+
