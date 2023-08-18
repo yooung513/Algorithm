@@ -448,6 +448,71 @@ print(cnt)
 
 
 
+# 수들의 조합
+# 오답
+import sys
+input = sys.stdin.readline
+
+def Solve(idx):
+    global cnt
+    global ans
+
+    if idx == k:
+        if sum(res) % m == 0:
+
+            res.sort()
+            print(res)
+            print(ans)
+            if res not in ans:
+                cnt += 1
+                ans.append(res)
+                print(ans)
+
+    else:
+        for i in range(n):
+            if chk[i] == 0:
+                chk[i] = 1
+                res[idx] = num[i]
+                Solve(idx+1)
+                chk[i] = 0
+
+n, k = map(int, input().split())
+num = list(map(int, input().split()))
+m = int(input())
+
+cnt = 0
+chk = [0]*n
+res = [0]*k
+ans = []
+Solve(0)
+print(cnt)
+
+
+# 간단,,, 그 자체..
+# i를 하나씩 키우면 중복 안되며 순서대로 입력됨 -> 문제 해결
+def DFS(L, s, sum):
+    global cnt
+    
+    if L == k:
+        if sum % m == 0:
+            cnt += 1
+
+    else:
+        for i in range(s, n):
+            DFS(L+1, i+1, sum+a[i])
+
+
+n, k = map(int, input().split())
+a = list(map(int, input().split()))
+m = int(input())
+
+cnt = 0
+DFS(0, 0, 0)
+print(cnt)
+
+
+
+
 # 인접행렬 (가중치 그래프)
 import sys
 input = sys.stdin.readline
@@ -462,6 +527,21 @@ for _ in range(m):
 for x in arr:
     print(*x)
 
+# 인덱스 활용
+import sys
+input = sys.stdin.readline
+
+n, m = map(int, input().split())
+arr = [[0]*(n+1) for _ in range(n+1)]
+
+for _ in range(m):
+    x, y, w = map(int, input().split())
+    arr[x][y] = w
+
+for i in range(1, n+1):
+    for j in range(1, n+1):
+        print(arr[i][j], end=' ')
+    print()
 
 
 #무방향 그래프 인접행렬
