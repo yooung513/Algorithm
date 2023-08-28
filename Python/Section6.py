@@ -628,3 +628,198 @@ print(cnt)
 
 
 # 안전영역
+# BFS
+import sys
+input = sys.stdin.readline
+
+from collections import deque
+
+n = int(input())
+land = []   # 땅의 높이
+top = 0     # 가장 높은 땅의 높이
+for _ in range(n):
+    tmp = list(map(int, input().split()))
+    top = max(top, max(tmp))
+    land.append(tmp)
+
+dq = deque()
+dx = [-1, 0, 1, 0]
+dy = [0, 1, 0, -1]
+
+safe = [0]*(top+1)
+for rain in range(2, top+1):
+    chk = [[0]*n for _ in range(n)]
+    cnt = 0
+
+    for i in range(n):  # 탐색
+        for j in range(n):
+            if land[i][j] > rain and chk[i][j] == 0:
+                cnt += 1
+                dq.append((i, j))
+
+                while dq:   # 영역 탐색
+                    now = dq.popleft()
+                    x = now[0]
+                    y = now[1]
+
+                    for k in range(4):
+                        xx = x + dx[k]
+                        yy = y + dy[k]
+
+                        if 0<=xx<n and 0<=yy<n and land[xx][yy]>rain and chk[xx][yy]==0:
+                            chk[xx][yy] = 1
+                            dq.append((xx, yy))
+    
+    safe[rain] = cnt    # 안전영역 개수 입력
+
+print(max(safe))    # 안전한 영역 최대 개수 출력
+
+# DFS
+import sys
+input = sys.stdin.readline
+sys.setrecursionlimit(10**6)    # 재귀함수 시간 제한
+
+
+def Solve(rain, x, y):
+    chk[x][y] = 1
+    for i in range(4):
+        xx = x + dx[i]
+        yy = y + dy[i]
+        if 0<=xx<n and 0<=yy<n and land[xx][yy] > rain and chk[xx][yy]==0:
+            Solve(rain, xx, yy)
+
+
+n = int(input())
+land = []   # 땅의 높이
+top = 0     # 가장 높은 땅의 높이
+for _ in range(n):
+    tmp = list(map(int, input().split()))
+    top = max(top, max(tmp))
+    land.append(tmp)
+
+dx = [-1, 0, 1, 0]
+dy = [0, 1, 0, -1]
+
+safe = 0
+for rain in range(2, top+1):
+    chk = [[0]*n for _ in range(n)]
+    cnt = 0
+
+    for i in range(n):  # 탐색
+        for j in range(n):
+            if land[i][j] > rain and chk[i][j] == 0:
+                cnt += 1
+                Solve(rain, i, j)
+    
+    safe = max(safe, cnt)
+                
+
+print(safe)    # 안전한 영역 최대 개수 출력
+
+
+
+# 토마토
+# 전체 다 익는 경우만 확인함 -> 수정 필요
+import sys
+input = sys.stdin.readline
+
+from collections import deque
+
+
+# 인접 토마토 영향
+def Solve(x, y):
+    chk[x][y] = 1
+    for i in range(4):
+        xx = x + dx[i]
+        yy = y + dy[i]
+        if 0<=xx<n and 0<=yy<m and tomato[xx][yy]==0 and chk[xx][yy]==0:
+            tomato[xx][yy] = 1
+    
+
+
+# m : 가로 칸의 수 -> 열
+# n : 세로 칸의 수 -> 행
+m, n = map(int, input().split())
+tomato = [list(map(int, input().split())) for _ in range(n)]
+chk = [[0]*m for _ in range(n)]
+
+dx = [-1, 0, 1, 0]
+dy = [0, 1, 0, -1]
+dq = deque()
+
+day = -1    # 하루가 지나야 영향을 받음
+while True:
+    flag = 'N'
+
+    # 전체 탐색
+    for i in range(n):  
+        for j in range(m):
+            if tomato[i][j]==1 and chk[i][j]==0:
+                flag='Y'
+                dq.append((i, j))
+
+    # 인접 토마토
+    while dq:
+        now = dq.popleft()
+        x = now[0]
+        y = now[1]
+        Solve(x, y)
+    
+    if flag == 'N':
+        break
+    else:
+        day += 1
+    
+print(day)
+
+# 수정 및 다른 방법 풀이
+import sys
+input = sys.stdin.readline
+
+from collections import deque
+
+dx = [-1, 0, 1, 0]
+dy = [0, 1, 0, -1]
+
+m, n = map(int, input().split())
+tomato = [list(map(int, input().split())) for _ in range(n)]
+day = [[0]*m for _ in range(n)]
+dq = deque()
+
+# 초기 익은 토마토 확인
+for i in range(n):
+    for j in range(m):
+        if tomato[i][j] == 1:
+            dq.append((i, j))
+
+# 인접 토마토 영향 + 날짜 
+while dq:
+    tmp = dq.popleft()
+    for i in range(4):
+        x = tmp[0] + dx[i]
+        y = tmp[1] + dy[i]
+
+        if 0<=x<n and 0<=y<m and tomato[x][y]==0:
+            tomato[x][y] = 1
+            day[x][y] = day[tmp[0]][tmp[1]]+1
+            dq.append((x, y))
+
+flag = 'Y'
+# 최종 결과 확인
+for i in range(n):
+    for j in range(m):
+        # 익지 않은 토마토가 있는 경우
+        if tomato[i][j] == 0:
+            flag = 'N'
+
+res = 0     # 최종 날짜
+if flag == 'Y':     # 전체 다 익은 경우
+    for i in range(n):
+        for j in range(m):
+            if day[i][j] > res:
+                res = day[i][j]
+
+    print(res)
+    
+else:               # 안 익은 토마토가 있는 경우
+    print(-1)
