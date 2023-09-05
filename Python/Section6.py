@@ -891,3 +891,120 @@ chk = [[0]*10 for _ in range(10)]
 for y in range(10):
     if ladder[9][y] == 2:
         Solve(9, y)
+
+
+
+# 피자 배달거리
+import sys
+input = sys.stdin.readline
+
+def Solve(idx, s):
+    global res
+
+    if idx == m:
+        sum = 0 
+        for j in range(len(house)): # 집
+            x1 = house[j][0]
+            y1 = house[j][1]
+            dis = float('inf')
+
+            for pi in cb:   # 집과 가장 가까운 피자집 찾기
+                x2 = pizza[pi][0]
+                y2 = pizza[pi][1]
+
+                dis = min(dis, abs(x1-x2)+abs(y1-y2))
+            sum += dis  # 최소거리 누적
+
+        if sum < res:   # 가장 가까운 최소거리 값 추적
+            res = sum
+    
+    else:
+        for i in range(s, len(pizza)):
+            cb[idx] = i
+            Solve(idx+1, i+1)
+
+
+n, m = map(int, input().split())
+city = [list(map(int, input().split())) for _ in range(n)]
+
+house = []
+pizza = []
+cb = [0] * m    # 조합(Combination)의 경우를 저장하는 리스트
+res = float('inf')  # 도시의 최소 피자배달거리
+
+for i in range(n):
+    for j in range(n):
+
+        if city[i][j] == 1:     # 집의 좌표
+            house.append((i, j))
+
+        if city[i][j] == 2:     # 피자집의 좌표
+            pizza.append((i, j))
+        
+Solve(0, 0)
+
+print(res)
+
+
+
+# 병합정렬 (후위순위 정렬)
+# 분할 후 정복하는 알고리즘
+def Sort(lt, rt):
+    if lt < rt:
+        mid = (lt+rt)//2
+        Sort(lt, mid)       # 가장 작은 영역까지 분할
+        Sort(mid+1, rt)
+
+        p1 = lt
+        p2 = mid+1
+        tmp = []
+
+        # 영역 대소 비교
+        while p1 <= mid and p2 <= rt:
+            if arr[p1] < arr[p2]:   
+                tmp.append(arr[p1])
+                p1 += 1
+            else:
+                tmp.append(arr[p2])
+                p2 += 1
+
+        # 남은 값 추가
+        if p1 <= mid:   
+            tmp = tmp + arr[p1:mid+1]
+        if p2 <= rt:
+            tmp = tmp + arr[p2:rt+1]
+
+        # tmp값 arr에 복사
+        for i in range(len(tmp)):
+            arr[lt+i] = tmp[i]
+
+arr = [23, 11, 45, 36, 15, 67, 33, 21]
+Sort(0, len(arr)-1)
+print(arr)
+
+
+
+# 퀵정렬
+# Pivot 값을 설정한 후 이를 기준으로 파티션 (값을 나눔)
+def Sort(lt, rt):
+    if lt < rt:
+        inserPosition = lt
+        pivot = arr[rt]
+
+        for i in range(lt, rt):
+            # pivot값을 기준으로 좌우로 정렬
+            if arr[i] <= pivot:
+                arr[i], arr[inserPosition] = arr[inserPosition], arr[i]
+                inserPosition += 1
+                
+        # pivot값 위치
+        arr[rt], arr[inserPosition] = arr[inserPosition], arr[rt]
+
+        # 분할
+        Sort(lt, inserPosition-1)
+        Sort(inserPosition+1, rt)
+
+
+arr = [23, 11, 45, 36, 15, 67, 33, 21]
+Sort(0, len(arr)-1)
+print(arr)
