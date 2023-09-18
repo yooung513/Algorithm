@@ -226,3 +226,178 @@ print(Solve(n-1, n-1))
 
 # 가방문제
 # 냅색 알고리즘
+import sys
+input = sys.stdin.readline
+
+n, tot = map(int, input().split())
+bag = [list(map(int, input().split())) for _ in range(n)]
+res = [0]*(tot+1)
+
+for i in range(n):
+    w = bag[i][0]
+    v = bag[i][1]
+
+    for j in range(1, tot+1):
+        if 0<= j-w <= tot:
+            res[j] = max(res[j-w]+v, res[j])
+
+print(res[tot])
+
+# 보석의 무게와 가치를 카운팅하면서 바로 체크하기
+n, tot = map(int, input().split())
+res = [0]*(tot+1)
+
+for i in range(n):
+    w, v = map(int, input().split())
+
+    for j in range(w, tot+1):
+        res[j] = max(res[j], res[j-w]+v)
+
+print(res[tot])
+
+
+
+# 동전 교환
+import sys
+input = sys.stdin.readline
+
+n = int(input())
+coin = list(map(int, input().split()))
+m = int(input())
+res = [500]*(m+1)
+res[0] = 0
+
+for i in range(n):
+    c = coin[i]
+    for j in range(c, m+1):
+        res[j] = min(res[j], res[j-c]+1)
+
+print(res)
+print(res[m])
+
+
+
+# 최대점수 구하기
+# 한 유형 당 한 문제만 풀 수 있기 때문에 뒤에서부터 카운팅해서 중복 문제를 해결
+import sys
+input = sys.stdin.readline
+
+n, m = map(int, input().split())
+res = [0]*(m+1)
+
+for _ in range(n):
+    s, t = map(int, input().split())
+
+    for i in range(m, t-1, -1):
+        res[i] = max(res[i], res[i-t]+s)
+    
+    print(res)
+
+print(res[m])
+
+
+
+# 플로이드 워샬 알고리즘
+# 그래프의 최단 거리
+import sys
+input = sys.stdin.readline
+
+n, m = map(int, input().split())
+city = [[5000]*(n+1) for _ in range(n+1)]
+
+# 초기값 설정
+for i in range(1, n+1):
+    city[i][i] = 0
+
+for _ in range(m):
+    s, e, v = map(int, input().split())
+    city[s][e] = v
+
+
+# 최소값으로 설정
+# 중간 노드를 지나가는 값을 설정해 꾸준히 최소로 유지
+for m in range(1, n+1):
+    for s in range(1, n+1):
+        for e in range(1, n+1):
+            city[s][e] = min(city[s][e], city[s][m]+city[m][e])
+
+# 값 출력
+for x in range(1, n+1):
+    for y in range(1, n+1):
+        if city[x][y] == 5000:
+            print('M', end=' ')
+        else:
+            print(city[x][y], end=' ')
+    print()
+
+
+
+# 회장뽑기
+# 플로이드-워샬 알고리즘 응용
+import sys
+input = sys.stdin.readline
+
+n = int(input())
+man = [[50]*(n+1) for _ in range(n+1)]
+
+# 초기 세팅
+for i in range(1, n+1):
+    man[i][i] = 0
+
+while True:
+    a, b = map(int, input().split())
+    if a < 0 and b < 0:
+        break
+    else:
+        man[a][b] = 1
+        man[b][a] = 1
+
+
+# 최소값 유지
+for m in range(1, n+1):
+    for s in range(1, n+1):
+        for e in range(1, n+1):
+            man[s][e] = min(man[s][e], man[s][m]+man[m][e])
+
+
+# 결과 값 추출
+res = [0]*(n+1)
+sco = 50
+for x in range(1, n+1):
+    tmp = 0
+    for y in range(1, n+1):
+        if tmp < man[x][y]:
+            tmp = man[x][y]
+
+    if sco > tmp:
+        sco = tmp
+    
+    res[x] = tmp
+
+print(sco, res.count(sco))
+for r in range(1, n+1):
+    if res[r] == sco:
+        print(r, end=' ')
+
+
+
+# 위상정렬
+# 그래프 정렬
+import sys
+input = sys.stdin.readline
+
+n, m = map(int, input().split())
+order = [0]*(n+1)
+
+for _ in range(m):
+    s, e = map(int, input().split())
+    order[e] += order[s]+1
+
+res = []
+for idx, val in enumerate(order):
+    if idx > 0:
+        res.append((val, idx))
+
+res.sort()
+for x in res:
+    print(x[1], end=' ')
