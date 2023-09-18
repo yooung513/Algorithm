@@ -158,3 +158,71 @@ for i in range(1, n):
         highest = res[i]
 
 print(highest)
+
+
+
+# 알리바바와 40인의 도둑
+from collections import deque
+
+import sys
+input = sys.stdin.readline
+
+n = int(input())
+arr = [list(map(int, input().split())) for _ in range(n)]
+res = [[0]*n for _ in range(n)]
+
+res[0][0] = arr[0][0]
+dq = deque()
+dq.append((0, 0))
+
+dx = [0, 1]
+dy = [1, 0]
+
+while dq:
+    tmp = dq.popleft()
+    now = res[tmp[0]][tmp[1]]
+
+    for i in range(2):
+        x = tmp[0]+dx[i]
+        y = tmp[1]+dy[i]
+
+        if 0<=x<n and 0<=y<n:
+            dq.append((x, y))
+
+            if res[x][y] == 0:
+                res[x][y] = arr[x][y] + now
+            else:
+                res[x][y] = min(res[x][y], arr[x][y] + now)
+            
+print(res[n-1][n-1])
+
+# Top-Down
+import sys
+input = sys.stdin.readline
+
+def Solve(x, y):
+    if res[x][y] > 0:
+        return res[x][y]
+    
+    if x == 0 and y == 0:
+        return arr[0][0]
+    
+    else:
+        if y == 0:
+            res[x][y] = Solve(x-1, y)+arr[x][y]
+        elif x == 0:
+            res[x][y] = Solve(x, y-1)+arr[x][y]
+        else:
+            res[x][y] = min(Solve(x-1, y), Solve(x, y-1)) + arr[x][y]
+        return res[x][y]
+
+n = int(input())
+arr = [list(map(int, input().split())) for _ in range(n)]
+res = [[0]*n for _ in range(n)]
+
+print(Solve(n-1, n-1))
+
+
+
+# 가방문제
+# 냅색 알고리즘
