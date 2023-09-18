@@ -227,6 +227,7 @@ print(time)
 
 
 # 백준 1302. 베스트 셀러
+# 탐색
 import sys
 input = sys.stdin.readline
 
@@ -248,11 +249,12 @@ for key, val in book.items():
         res.append(key)
 
 res.sort()
-print(res[0]
-      
+print(res[0])
+
 
 
 # 백준 1668. 트로피 진열
+# 탐색
 import sys
 input = sys.stdin.readline
 
@@ -281,3 +283,64 @@ for x in real:
 
 print(left_cnt)
 print(right_cnt)
+
+
+
+# 백준 2751. 수 정렬하기 2
+# 정렬
+import heapq
+import sys
+input = sys.stdin.readline
+
+n = int(input())
+arr = []
+for _ in range(n):
+    m = int(input())
+    heapq.heappush(arr, m)
+
+for _ in range(n):
+    print(heapq.heappop(arr))
+
+
+
+# 백준 11004. K번째 수
+# 정렬
+n, k = map(int, input().split())
+arr = list(map(int, input().split()))
+arr.sort()
+print(arr[k-1])
+
+
+
+# 백준 7490. 0만들기
+# 재귀호출
+def Solve(idx):
+    tmp.append(str(idx))
+
+    if idx == n:
+        res = ''.join(tmp)
+        ans = res.replace(' ', '')
+        if eval(ans) == 0:
+            print(res)
+        tmp.pop()
+            
+    else:
+        for i in range(3):
+            tmp.append(opr[i])
+            Solve(idx+1)
+            tmp.pop()
+        tmp.pop()
+
+
+t = int(input())
+opr = [' ', '+', '-']
+
+for _ in range(t):
+    n = int(input())
+    tmp = []
+    Solve(1)
+    print()
+
+
+
+# 성지키기
