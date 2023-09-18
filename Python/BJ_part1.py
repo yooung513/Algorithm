@@ -758,3 +758,60 @@ for _ in range(n-1):
     hq.heappush(room, new_end)
 
 print(len(room))
+
+
+
+# 백준 7662. 이중 우선순위 큐
+import heapq
+
+import sys
+input = sys.stdin.readline
+
+
+def pop(heap):
+    while len(heap) > 0:
+        # 삭제할 원소 찾기
+        val, id = heapq.heappop(heap)
+
+        # 원소를 삭제하는 경우
+        if not deleted[id]:
+            deleted[id] = True
+            return val
+        
+    # 삭제할 원소가 없는 경우
+    return None
+        
+
+
+t = int(input())
+for _ in range(t):
+    k = int(input())
+    maxH = []
+    minH = []
+    now = 0     # 삽입할 원소의 인덱스 (ID 값) : 삭제 여부 기록을 위한 ID
+    deleted = [False]*(k+1)     # 각 원소의 삭제 여부
+
+    for _ in range(k):
+        opr, val = input().split()
+        val = int(val)
+
+        # 삽입연산
+        if opr == 'I':  
+            heapq.heappush(maxH, (-val, now))
+            heapq.heappush(minH, (val, now))
+            now += 1
+
+        # 삭제연산
+        else:
+            if val == 1:    # 최대값 삭제
+                pop(maxH)
+            else:           # 최소값 삭제
+                pop(minH)
+
+    max_val = pop(maxH)     # 최대값 추출
+    if max_val == None:
+        print('EMPTY')
+    else:
+        # max_val 값은 minH에서도 존재하고 꺼내질 수 있으므로 다시 삽입
+        heapq.heappush(minH, (-max_val, now))
+        print(-max_val, pop(minH))
