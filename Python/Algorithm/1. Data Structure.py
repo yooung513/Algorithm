@@ -293,3 +293,78 @@ for _ in range(t):
 
 for x in res:
     print(x)
+
+
+
+# 백준 11279. 최대 힙
+import heapq
+import sys
+input = sys.stdin.readline
+
+n = int(input())
+num = []
+for _ in range(n):
+    x = int(input())
+
+    if x == 0:
+        if num:
+            print(heapq.heappop(num)*-1)
+        else:
+            print(0)
+    else:
+        heapq.heappush(num, -x)
+
+
+
+# 백준 11286. 절댓값 힙
+import heapq
+import sys
+input = sys.stdin.readline
+
+n = int(input())
+num = []
+for _ in range(n):
+    x = int(input())
+
+    if x == 0:
+        if num:
+            print(heapq.heappop(num)[1])
+        else:
+            print(0)
+    else:
+        heapq.heappush(num, (abs(x), x))
+
+
+
+# 백준 2696. 중앙값 구하기
+import sys
+input = sys.stdin.readline
+
+t = int(input())
+for _ in range(t):
+    m = int(input())
+
+    num = []
+    while True:
+        num += list(map(int, input().split()))
+
+        if len(num) == m:
+            break
+    
+    print((m+1)//2)
+
+    tmp = []
+    cnt = 0
+    for i in range(m):
+        tmp.append(num[i])
+        tmp.sort()
+
+        if (i+1)%2 == 1:    # 홀수
+            cnt += 1
+            print(tmp[i//2], end=' ')
+
+        if cnt == 10:
+            print()
+            cnt = 0
+    
+    print()
