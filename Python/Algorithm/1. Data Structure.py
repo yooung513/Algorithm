@@ -161,3 +161,135 @@ while len(res) != n:
     res.append(li.pop(p))
 
 print('<' + ', '.join(map(str, res)) + '>')
+
+
+
+# 백준 9093. 단어 뒤집기
+import sys
+input = sys.stdin.readline
+
+t = int(input())
+for _ in range(t):
+    word = list(map(str, input().split()))
+    
+    new = []
+    for x in word:
+        new.append(x[::-1])
+
+    print(' '.join(new))
+
+# 문자열 반대로 하는 방법
+import sys
+input = sys.stdin.readline
+
+t = int(input())
+for _ in range(t):
+    word = list(map(str, input().split()))
+
+    print(' '.join(word[::-1])[::-1])
+
+
+
+# 백준 9012. 괄호
+# 자료구조
+from collections import deque
+import sys
+iuput = sys.stdin.readline
+
+n = int(input())
+for _ in range(n):
+    ps = list(map(str, input()))
+    ps = deque(ps)
+    stk = []
+
+    if len(ps)%2 == 1:
+        print("NO")
+    else:
+        while ps:
+            tmp = ps.popleft()
+            if tmp == "(":
+                stk.append(tmp)
+            else:
+                if len(stk)> 0 and stk[-1] == "(":
+                    stk.pop()
+                else:
+                    stk.append(1)
+                    break
+                    
+        if len(stk) == 0:
+            print("YES")
+        else:
+            print("NO")
+
+# 구현 -> 조금 더 빠름
+from collections import deque
+import sys
+iuput = sys.stdin.readline
+
+n = int(input())
+for _ in range(n):
+    ps = input()
+    while '()' in ps:
+        ps = ps.replace('()', '')
+
+    if ps:
+        print("NO")
+    else:
+        print("YES")
+
+
+
+# 백준 1966. 프린터 큐
+from collections import deque
+import sys
+iuput = sys.stdin.readline
+
+t = int(input())
+for _ in range(t):
+    n, m = map(int, input().split())
+    imp = list(map(int, input().split()))
+    dq = [(idx, val) for idx, val in enumerate(imp)]
+    dq = deque(dq)
+    
+    cnt = 0
+    while dq:
+        tmp = dq.popleft()
+        
+        if all(tmp[1] >= x[1] for x in dq):
+            cnt += 1
+            if tmp[0] == m:
+                print(cnt)
+                break
+        else:
+            dq.append(tmp)
+
+# 기존 풀이
+from collections import deque
+
+t = int(input())
+res = []
+
+for _ in range(t):
+    n, m = map(int, input().split())
+    imp = list(map(int, input().split()))
+    
+    dq = deque()
+    for idx, val in enumerate(imp):
+        dq.append([idx, val])
+    
+    imp.sort(reverse=True)
+    cnt = 0
+    while dq:
+        tmp = dq.popleft()
+        idx = tmp[0]
+        val = tmp[1]
+        if val == imp[cnt]:
+            cnt += 1
+            if idx == m:
+                res.append(cnt)
+                break
+        else:
+            dq.append(tmp)    
+
+for x in res:
+    print(x)
