@@ -62,29 +62,22 @@ print(res)
 
 
 
-# 백준 1939. 중량제한
+
+
+
+
+# 백준 1927. 최소 힙
 import sys 
-input = sys.stdin.readline
+import heapq
 
-n, m = map(int, input().split())
-island = [[0]*(n+1) for _ in range(n+1)]
-
-max_w = 0
-for _ in range(m):
-    a, b, c = map(int, input())
-    island[a][b] = c
-    island[b][c] = c
-    
-    if max_w < c: 
-        max_w = c
-
-s, e = map(int, input().split())
-res = 0
-if island[s][e] == max_w:
-    print(max_w)
-else:
-    for i in range(1, n+1):
-        if island[s][i] != 0:
-            res = max(res, Solve(s, i))
-
-# -> 다시 풀기
+n = int(input())
+arr = []
+for _ in range(n):
+    x = int(sys.stdin.readline())
+    if x > 0:
+        heapq.heappush(arr, x)
+    else:
+        if len(arr) == 0:
+            print(0)
+        else:
+            print(heapq.heappop(arr))
