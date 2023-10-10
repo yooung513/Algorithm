@@ -271,3 +271,18 @@ for c in chk:
 
 
 # 백준 1822. 차집합
+import sys
+input = sys.stdin.readline
+
+n, m = map(int, input().split())
+a = list(map(int, input().split()))
+b = list(map(int, input().split()))
+
+res = list(set(a)-set(b))
+res.sort()
+
+print(len(res))
+if len(res) != 0:
+    print(' '.join(map(str, res)))
+
+# 이분탐색 풀이 채워넣기 ㅜㅜ
