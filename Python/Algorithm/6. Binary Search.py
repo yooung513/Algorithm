@@ -285,4 +285,182 @@ print(len(res))
 if len(res) != 0:
     print(' '.join(map(str, res)))
 
-# 이분탐색 풀이 채워넣기 ㅜㅜ
+# 이분탐색
+import math
+import sys
+input = sys.stdin.readline
+
+n, m = map(int, input().split())
+a = list(map(int, input().split()))
+b = list(map(int, input().split()))
+res = []
+
+b.sort()
+for x in a:
+    tmp = x
+    s, e = 0, m-1
+    while s <= e:
+        mid = (s+e)//2
+
+        if b[mid] == x:
+            tmp = 0
+            break
+
+        elif b[mid] < x:
+            s = mid+1
+
+        else:
+            e = mid-1
+
+    if tmp != 0:
+        res.append(tmp)
+        
+print(len(res))
+if len(res) > 0:
+    print(*sorted(res))
+
+
+
+# 백준 7453. 합이 0인 네 정수
+# 시간초과
+import sys
+input = sys.stdin.readline
+
+
+n = int(input())
+arrA = [] 
+arrB = []
+arrC = []
+arrD = []
+for _ in range(n):
+    a, b, c, d = map(int, input().split())
+    arrA.append(a)
+    arrB.append(b)
+    arrC.append(c)
+    arrD.append(d)
+
+
+# A+B => arr1, C+D => arr2
+arr1, arr2 = [], []
+for a in arrA:
+    for b in arrB:
+        arr1.append(a+b)
+
+for c in arrC:
+    for d in arrD:
+        arr2.append(c+d)
+
+
+# 두 개의 배열의 값들을 더했을 때 0이 되는 값 찾기
+arr2.sort()
+cnt = 0
+
+for x in arr1:
+    s, e = 0, (n*n)-1
+    while s <= e:
+        mid = (s+e)//2
+
+        if arr2[mid]+x == 0:
+            cnt += 1
+            # 중복 값이 있는 경우
+            tmp1 = mid
+            # 현재 인덱스 앞에 중복값이 존재하는 경우
+            while True:
+                tmp1 -= 1
+                if arr2[tmp1]+x == 0:
+                    cnt += 1
+                else:
+                    break
+            
+            tmp2 = mid
+            # 현재 인덱스 뒤에 중복값이 존재하는 경우
+            while True:
+                tmp2 += 1
+                if arr2[tmp2]+x == 0:
+                    cnt += 1
+                else:
+                    break
+            break
+
+        elif arr2[mid]+x < 0:
+            s = mid+1
+
+        else:
+            e = mid-1
+
+print(cnt)
+
+# dict 사용 
+# 시간초과 (메모리 초과로 예상)
+import sys
+input = sys.stdin.readline
+
+
+n = int(input())
+arrAB = []
+arrCD = []
+for _ in range(n):
+    a, b, c, d = map(int, input().split())
+    arrAB.append((a, b))
+    arrCD.append((c, d))
+
+# 각각의 A, B의 값 합과 C, D값의 합을 구해서 dict에 입력
+dicAB = dict()
+dicCD = dict()
+for i in range(n):
+    for j in range(n):
+        x = arrAB[i][0] + arrAB[j][1]
+        y = arrCD[i][0] + arrCD[j][1]
+
+        if x not in dicAB :
+            dicAB[x] = 1
+        else:
+            dicAB[x] += 1
+
+        if y not in dicCD:
+            dicCD[y] = 1
+        else:
+            dicCD[y] += 1
+
+cnt = 0
+for k, v in dicAB.items():
+    if -1 * k in dicCD.keys():
+        cnt += v
+
+print(cnt)
+
+# 풀이
+import sys
+input = sys.stdin.readline
+
+
+n = int(input())
+arrA = []
+arrB = []
+arrC = []
+arrD = []
+for _ in range(n):
+    a, b, c, d = map(int, input().split())
+    arrA.append(a)
+    arrB.append(b)
+    arrC.append(c)
+    arrD.append(d)
+
+# 각각의 A, B의 값 합과 C, D값의 합을 구해서 dict에 입력
+dicAB = dict()
+for a in arrA:
+    for b in arrB:
+        x = a+b
+        if x not in dicAB:
+            dicAB[x] = 1
+        else:
+            dicAB[x] += 1
+
+cnt = 0
+for c in arrC:
+    for d in arrD:
+        y = (c+d) * -1
+        if y in dicAB.keys():
+            cnt += dicAB[y]
+
+print(cnt)
