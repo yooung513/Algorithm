@@ -248,3 +248,20 @@ for _ in range(t):
 
 
 # 백준 2869. 달팽이는 올라가고 싶다.
+a, b, v = map(int, input().split())
+
+if a >= v:
+    print(1)
+else:
+    x = (v-b)/(a-b)
+    if x == int(x):
+        print(int(x))
+    else:
+        print(int(x)+1)
+
+
+
+# 백준 24265. 알고리즘의 수행 시간 4
+n = int(input())
+print(((n-1)*n)//2)
+print(2)
