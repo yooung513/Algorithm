@@ -464,3 +464,17 @@ for c in arrC:
             cnt += dicAB[y]
 
 print(cnt)
+
+
+
+# 백준 2231. 분해합
+n = int(input())
+
+for i in range(1, n+1):
+    a = list(str(i))
+    
+    if sum(map(int, a))+i == n:
+        print(i)
+        break
+else:
+    print(0)
