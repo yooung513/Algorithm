@@ -478,3 +478,37 @@ for i in range(1, n+1):
         break
 else:
     print(0)
+    
+    
+    
+# 백준 1018. 체스판 다시 칠하기
+import sys
+
+n, m = map(int, input().split())    # n: 세로 / m: 가로
+board = [sys.stdin.readline() for _ in range(n)]
+
+
+res = float('inf')
+for i in range(n-7):
+    for j in range(m-7):
+        w_cnt = 0   # w로 시작하는 경우
+        b_cnt = 0   # b로 시작하는 경우
+        
+        for x in range(i, i+8):
+            for y in range(j, j+8):
+                if (x+y)%2 == 0:
+                    if board[x][y] != 'W':  # W로 시작하는 경우에서 B의 색을 가지고 있으면 색칠
+                        w_cnt += 1
+                    else:                   # B로 시작하는 경우에서 W의 색을 가지고 있으면 색칠
+                        b_cnt += 1
+                
+                else:
+                    if board[x][y] != 'W':
+                        b_cnt += 1
+                    else:
+                        w_cnt += 1
+                        
+        res = min(res, b_cnt, w_cnt)
+            
+print(res)
+
