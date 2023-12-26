@@ -512,3 +512,19 @@ for i in range(n-7):
             
 print(res)
 
+
+
+# 백준 1436. 영화감독 숌
+n = int(input())
+
+cnt = 0
+ans = 666
+while True:
+    if '666' in str(ans):
+        cnt += 1
+    
+    if n == cnt:
+        print(ans)
+        break
+    else:
+        ans += 1
