@@ -527,4 +527,3 @@ while True:
         print(ans)
         break
     else:
-        ans += 1
