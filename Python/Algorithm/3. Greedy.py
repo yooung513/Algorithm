@@ -59,3 +59,75 @@ while n != 1:
     cnt += 1
 
 print(cnt)
+
+
+
+# 이코테. 모험가 길드
+# 나의 풀이
+n = int(input())
+x = list(map(int, input().split()))
+
+x.sort()
+tmp = list()
+cnt = 0
+for i in x:
+    tmp.append(i)
+    
+    if len(tmp) == tmp[-1]:
+       cnt += 1
+       tmp.clear()
+       
+print(cnt) 
+
+# 답안 예시
+n = int(input())
+x = list(map(int, input().split()))
+x.sort()
+
+res = 0         # 총 그룹의 수
+cnt = 0         # 현재 그룹에 포함된 모험가의 수
+
+for i in x:     # 공포도가 낮은 사람부터 하나씩 확인하기 
+    cnt += 1    # 현재 그룹에 모험가를 포함시키기
+    
+    if cnt >= i:    # 현재 그룹에 포함한 모험가의 수가 현재 공포도 이상이라면, 그룹을 결성한다.
+        res += 1    # 총 그룹의 수 증가
+        cnt = 0     # 현재 그룹에 포함된 모험가의 수 초기화
+        
+print(res)
+
+
+
+# 이코테. 곱하기 혹은 더하기
+# 나의 풀이
+s = list(map(str, input()))
+
+ans = 0
+for x in s:
+    tmp = int(x)
+    
+    if ans <= 1 :           # 기존 값이 0 또는 1 인 경우 -> 합
+        ans += tmp
+    else:
+        if tmp > 1:         # 추가 값이 0 또는 1이 아닌 경우 -> 곱
+            ans *= tmp 
+        else:               # 추가 값이 0 또는 1인 경우 -> 합
+            ans += tmp  
+        
+print(ans)
+
+# 답안 예시
+data = input()
+
+# 첫 번째 문자를 숫자로 변경하여 대입
+result = int(data[0])
+for i in range(1, len(data)):
+    # 두 수 중에서 하나라도 '0' 혹은 '1'인 경우, 곱하기보다는 더하기 수행
+    num = int(data[i])
+    
+    if num <= 1 or result <= 1:
+        result += num
+    else:
+        result *= num
+        
+print(result)
