@@ -272,3 +272,61 @@ print(2)
 n = int(input())
 print((n*(n-1)*(n-2))//6)
 print(3)
+
+
+
+# 이코테. 상하 좌우
+# 나의 풀이
+# 지도에서 여행자의 도착지점을 표시
+# n : 공간의 크기           <= 100
+# plan : 계획서 내용        <= 100
+
+n = int(input())
+plan = list(map(str, input().split()))
+map = [[0]*(n+1) for _ in range(n+1)]
+
+dx = [-1, 0, 1, 0]      # U R D L
+dy = [0, 1, 0, -1]
+now = [1, 1]
+idx = 0 
+for go in plan:
+    if go == 'U':
+        idx = 0
+    elif go == 'R':
+        idx = 1  
+    elif go == 'D':
+        idx = 2
+    elif go == 'L':
+        idx = 3
+        
+    if 0 < now[0]+dx[idx] <= n and 0 < now[1]+dy[idx] <= n:
+        now[0] += dx[idx]
+        now[1] += dy[idx]
+        
+print(*now)
+
+
+# 답안 예시
+# N을 입력 받기
+n = int(input())
+x, y = 1, 1
+plans = input().split()
+
+# L, R, U, D에 따른 이동 방향
+dx = [0, 0, -1, 1]
+dy = [-1, 1, 0, 0]
+move_types = ['L', 'R', 'U', 'D']
+
+for plan in plans:                          # 이동 계획을 하나씩 확인
+    for i in range(len(move_types)):        # 이동 후 좌표 구하기
+        if plan == move_types[i]:
+            nx = x + dx[i]
+            ny = y + dy[i]
+            
+    if nx < 1 or ny < 1 or nx > n or ny > n:    # 공간을 벗어나는 경우 무시
+        continue
+    
+    x, y = nx, ny                           # 이동 수행
+    
+print(x, y)
+    
