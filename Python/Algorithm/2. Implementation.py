@@ -373,4 +373,36 @@ print(result)
 
 
 
-# 
+# 이코테. 럭키 스트레이트
+n = list(str(input()))
+left = 0
+right = 0
+
+for i in range(len(n)//2):
+    left += int(n[i])
+    right += int(n[-1-i])
+    
+if left == right:
+    print("LUCKY")
+else:
+    print("READY")
+    
+
+# 답안 예시
+n = input()
+length = len(n)     # 점수값의 총 자릿수
+summary = 0
+
+# 왼쪽 부분의 자릿수 합 더하기
+for i in range(length // 2):
+    summary += int(n[i])
+    
+# 오른쪽 부분의 자릿수 합 빼기
+for i in range(length//2, length):
+    summary -= int(n[i])
+    
+# 왼쪽 부분과 오른쪽 부분의 자릿수 합이 동일한지 검사
+if summary == 0:
+    print("LUCKY")
+else:
+    print("READY")

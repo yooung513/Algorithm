@@ -527,3 +527,31 @@ while True:
         print(ans)
         break
     else:
+
+
+
+# 이코테. 부품찾기
+n = int(input())
+nlist = list(map(int, input().split()))
+m = int(input())
+mlist = list(map(int, input().split()))
+
+nlist.sort()
+for x in mlist:
+    res = "no"
+    s, e = 0, n-1
+    while s <= e :
+        mid = (s + e) // 2
+        
+        if nlist[mid] == x:
+            res = "yes"
+            break
+        
+        elif nlist[mid] < x: 
+            s = mid + 1
+            
+        else:
+            e = mid - 1
+    
+    print(res, end =' ')
+        
