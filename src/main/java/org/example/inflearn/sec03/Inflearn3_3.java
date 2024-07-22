@@ -8,7 +8,7 @@ public class Inflearn3_3 {
     static int[] card = new int[21];
 
     public static void main(String[] args) throws Exception {
-        for (int i = 1; i < 21; i++) {
+        for (int i = 1; i <= 20; i++) {
             card[i] = i;
         }
 
@@ -22,12 +22,16 @@ public class Inflearn3_3 {
             change(s, e);
         }
 
+        for(int i = 1; i <= 20; i++) {
+            System.out.print(card[i] + " ");
+        }
     }
 
     public static void change(int s, int e) {
         for (int i = 0; i <= (e - s)/2 ; i++) {
-            int tmp = card[s + i];
-            int second = card[e - i];
+            int tmp = card[s+i];
+            card[s+i] = card[e-i];
+            card[e-i] = tmp;
         }
     }
 }
