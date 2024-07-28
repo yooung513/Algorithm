@@ -1,6 +1,5 @@
 package main.java.org.example.codingtest;
 
-import java.util.*;
 import java.io.*;
 
 // 빙고
