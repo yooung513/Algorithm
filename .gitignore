@@ -14,6 +14,7 @@ out/production/DoitCT/out/production/DoitCT/.idea/misc.xml
 out/production/DoitCT/out/production/DoitCT/.idea/modules.xml
 *.xml
 *.iml
+
 .gradle/8.5/checksums/checksums.lock
 .gradle/8.5/dependencies-accessors/dependencies-accessors.lock
 .gradle/8.5/dependencies-accessors/gc.properties
@@ -31,3 +32,10 @@ gradle/wrapper/gradle-wrapper.jar
 gradle/wrapper/gradle-wrapper.properties
 gradlew
 gradlew.bat
+
+*.lock
+*.properties
+*.probe
+*.bin
+/.gradle
+
