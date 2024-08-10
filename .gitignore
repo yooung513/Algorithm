@@ -19,3 +19,4 @@ out/production/DoitCT/out/production/DoitCT/.idea/modules.xml
 *.probe
 *.bin
 /.gradle
+*.uniqueId0
