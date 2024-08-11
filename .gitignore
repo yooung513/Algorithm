@@ -38,4 +38,5 @@ gradlew.bat
 *.probe
 *.bin
 /.gradle
+*.uniqueId0
 
