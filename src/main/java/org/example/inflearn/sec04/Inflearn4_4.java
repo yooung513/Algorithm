@@ -5,7 +5,7 @@ import java.io.*;
 
 // 마구간 정하기
 public class Inflearn4_4 {
-
+  
     static int[] house;
 
     public static void main(String[] args) throws Exception {

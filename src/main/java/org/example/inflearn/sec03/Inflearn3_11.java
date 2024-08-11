@@ -19,38 +19,29 @@ public class Inflearn3_11 {
 
         int cnt = 0;
         for (int i = 0; i < 7; i++) {
-            boolean flagRow = true;
             for (int j = 0; j < 3; j++) {
-
-                for (int k = 0; k < 2; k++) {
-                    System.out.println(arr[i][j+k] + " / " + arr[i][4-j-k]);
-                    if (arr[i][j+k] != arr[i][4-j-k]) {
-                        flagRow = false;
-                        break;
-                    }
-                }
-
+                if (checkRow(i, j)) cnt++;
+                if (checkCol(j, i)) cnt++;
             }
-            if (flagRow) cnt++;
-            System.out.println("cnt = " + cnt);
-            System.out.println();
         }
+
         System.out.println(cnt);
-
-        for (int i = 0; i < 3; i++) {
-            for (int j = 0; j < 7; j++) {
-                boolean flagCol = true;
-
-                for (int k = 0; k < 2; k++) {
-                    if (arr[j][i+k] != arr[j][4-i-k]) {
-                        flagCol = false;
-                        break;
-                    }
-                }
-
-                if (flagCol) cnt++;
-            }
-        }
-
     }
+
+    public static boolean checkRow(int row, int col) {
+        for (int i = 0; i < 2; i++) {
+            if (arr[row][col + i ] != arr[row][col + 4 - i])
+                return false;
+        }
+        return true;
+    }
+
+    public static boolean checkCol(int row, int col) {
+        for (int i = 0; i < 2; i++) {
+            if (arr[row + i][col] != arr[row + 4 - i][col])
+                return false;
+        }
+        return true;
+    }
+
 }
