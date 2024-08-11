@@ -1,10 +1,9 @@
 package main.java.org.example.inflearn.sec04;
 
-import java.util.*;
 import java.io.*;
 
 // 역수열
-public class Inflear4_10 {
+public class Inflearn4_10 {
     public static void main(String[] args) throws Exception {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         int n = Integer.parseInt(br.readLine());
