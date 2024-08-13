@@ -1,4 +1,4 @@
-package main.java.org.example.inflearn.sec04;
+package org.example.inflearn.sec04;
 
 import java.util.*;
 import java.io.*;
@@ -19,6 +19,25 @@ public class Inflearn4_9 {
         int lastVal = 0;
         while (!dq.isEmpty()) {
             int l = dq.pollFirst();
+            int r = 0;
+            if (!dq.isEmpty()) {
+                r = dq.pollLast();
+            }
+
+            if(l > lastVal && r > lastVal) {    // 양쪽 다 마지막 숫자보다 큰 경우
+                if (l < r) {
+                    sb.append("L");
+                    dq.addLast(r);
+                } else {
+                    sb.append("R");
+                    dq.addFirst(l);
+                }
+            } else if (l > lastVal) {           // 왼쪽만 큰 경우
+
+            }
+
+
+            // 오른쪽만 큰 경우
             int r = !dq.isEmpty() ? dq.pollLast() : 0;
 
             if(l > lastVal && r > lastVal) {
@@ -47,5 +66,6 @@ public class Inflearn4_9 {
 
         System.out.println(sb.length());
         System.out.println(sb);
+
     }
 }
