@@ -38,7 +38,34 @@ public class Inflearn4_9 {
 
 
             // 오른쪽만 큰 경우
+            int r = !dq.isEmpty() ? dq.pollLast() : 0;
+
+            if(l > lastVal && r > lastVal) {
+                if (l < r) {
+                    lastVal = l;
+                    sb.append("L");
+                    dq.addLast(r);
+                } else if (r < l){
+                    lastVal = r;
+                    sb.append("R");
+                    dq.addFirst(l);
+                }
+            } else if (l > lastVal) {
+                lastVal = l;
+                sb.append("L");
+                dq.addLast(r);
+            } else if (r > lastVal) {
+                lastVal = r;
+                sb.append("R");
+                dq.addFirst(l);
+            } else {
+                break;
+            }
 
         }
+
+        System.out.println(sb.length());
+        System.out.println(sb);
+
     }
 }
