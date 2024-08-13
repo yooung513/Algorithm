@@ -10,7 +10,7 @@ public class BJ_16937 {
     static int[][] paper;
     static List<int[]> sticker = new ArrayList<>();
     static int area = 0;
-    
+
     public static void main(String[] args) throws Exception {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         String[] hw = br.readLine().split(" ");
