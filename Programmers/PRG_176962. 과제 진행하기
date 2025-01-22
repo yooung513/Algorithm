@@ -2,13 +2,6 @@ import java.util.*;
 import java.io.*;
 
 public class Programmers {
-	public static void main(String[] args) {
-		System.out.println(Arrays.toString( solution(new String[][] {{"korean", "11:40", "30"}, {"english", "12:10", "20"}, {"math", "12:30", "40"}})));
-		System.out.println(Arrays.toString( solution(new String[][] {{"science", "12:40", "50"}, {"music", "12:20", "40"}, {"history", "14:00", "30"}, {"computer", "12:30", "100"}}) ));
-		System.out.println(Arrays.toString( solution(new String[][] {{"aaa", "12:00", "20"}, {"bbb", "12:10", "30"}, {"ccc", "12:40", "10"}})));
-		
-	}
-	
 	public static String[] solution(String[][] plans) {
 		List<String> res = new ArrayList<>();
 		Deque<String[]> last = new ArrayDeque<>();
@@ -64,5 +57,4 @@ public class Programmers {
 		
 		return hour * 60 + minute; 
 	}
-	
 }
