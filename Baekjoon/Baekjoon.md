@@ -1,7 +1,7 @@
 ## 백준 문제 풀이
 
 - [x] 1018. [체스판 다시 칠하기](https://www.acmicpc.net/problem/1018) [브루트 포스]
-- [ ] 1043. [거짓말](https://www.acmicpc.net/problem/1043)
+- [x] 1043. [거짓말](https://www.acmicpc.net/problem/1043) 
 - [ ] 1149. [RGB 거리](https://www.acmicpc.net/problem/1149)    
 - [ ] 1251. [단어 나누기](https://www.acmicpc.net/problem/1251)
 - [x] 1260. [DFS와 BFS](https://www.acmicpc.net/problem/1260) [dfs, bfs]
