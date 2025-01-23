@@ -4,7 +4,7 @@
 - [ ] 1043. [거짓말](https://www.acmicpc.net/problem/1043)
 - [ ] 1149. [RGB 거리](https://www.acmicpc.net/problem/1149)    
 - [ ] 1251. [단어 나누기](https://www.acmicpc.net/problem/1251)
-- [x] 1260. [DFS와 BFS](https://www.acmicpc.net/problem/1260)
+- [x] 1260. [DFS와 BFS](https://www.acmicpc.net/problem/1260) [dfs, bfs]
 - [ ] 1283. [단축키 지정](https://www.acmicpc.net/problem/1283)
 - [ ] 1309. [동물원](https://www.acmicpc.net/problem/1309)
 - [ ] 1484. [다이어트](https://www.acmicpc.net/problem/1484)
