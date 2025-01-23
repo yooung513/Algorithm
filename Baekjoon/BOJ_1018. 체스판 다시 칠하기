@@ -1,0 +1,52 @@
+package temp_dev;
+
+import java.util.*;
+import java.io.*;
+
+public class Boj {
+	public static void main(String[] args) throws Exception {
+		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+		StringTokenizer st = new StringTokenizer(br.readLine());
+		
+		int n = Integer.parseInt(st.nextToken());
+		int m = Integer.parseInt(st.nextToken());
+		
+		String[][] board = new String[n][m];
+		for (int i = 0; i < n; i++) {
+			String[] tmp = br.readLine().split("");
+			for (int j = 0; j < m; j++) {
+				board[i][j] = tmp[j];
+			}
+		}
+		
+		int res = Integer.MAX_VALUE; 
+		for (int i = 0; i < n-7 ; i++) {
+			for (int j = 0; j < m-7; j++) {
+				
+				int bStr = 0; 
+				int wStr = 0;
+				for (int x = 0; x < 8; x++) {
+					for (int y = 0; y < 8; y++) {
+						int xx = x + i; 
+						int yy = y + j;
+						
+						if ( (xx + yy) % 2 == 0 ) {
+							bStr += "W".equals(board[xx][yy]) ? 1 : 0;
+							wStr += "B".equals(board[xx][yy]) ? 1 : 0;
+							
+						} else {
+							bStr += "B".equals(board[xx][yy]) ? 1 : 0;
+							wStr += "W".equals(board[xx][yy]) ? 1 : 0;
+						}
+					}
+				}
+				
+				res = Math.min(res, Math.min(wStr, bStr));
+			}
+		}
+		
+		System.out.print(res);
+	}
+}
+
+/* 붙어있는 문자열은 StringTokenizer로 토큰화 할 수 없음 */
