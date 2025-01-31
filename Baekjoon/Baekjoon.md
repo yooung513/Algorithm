@@ -25,7 +25,8 @@
 - [ ] 2589. [보물섬](https://www.acmicpc.net/problem/2589)
 - [ ] 2624. [동전 바꿔주기](https://www.acmicpc.net/problem/2624)
 - [ ] 2667. [단지번호붙이기](https://www.acmicpc.net/problem/2667)    
-- [ ] 2578. [빙고](https://www.acmicpc.net/problem/2578)    
+- [ ] 2578. [빙고](https://www.acmicpc.net/problem/2578)
+- [x] 2869. [달팽이는 올라가고 싶다](https://www.acmicpc.net/problem/2869)    
 
 - [ ] 5648. [역원소 정렬](https://www.acmicpc.net/problem/5648)
 
