@@ -1,10 +1,12 @@
-package temp_dev;
+/* * Union-Find 알고리즘 
+ *   서로소 집합(Dis) 알고리즘
+ *   여러 개의 노드가 존재할 때 두 개의 노드를 선택해서, 현재 이 노드가 같은 그래프에 속하는지 판별하는 알고리즘
+*/
 
 import java.util.*;
 import java.io.*;
 
-// 수정 필요
-public class Boj {
+public class Main {
 	private static int[] group;
 	
 	public static void main(String[] args) throws Exception {
@@ -13,40 +15,42 @@ public class Boj {
 		
 		int n = Integer.parseInt(st.nextToken());
 		int m = Integer.parseInt(st.nextToken());
+		
 		group = new int[n + 1];
 		for (int i = 0 ; i < n+1; i++) {
 			group[i] = i;
 		}
 		
 		st = new StringTokenizer(br.readLine());
-		boolean[] know = new boolean[n+1];
-		int t = Integer.parseInt(st.nextToken());
-		if(t == 0) {
+		int tNum = Integer.parseInt(st.nextToken());
+		
+		// 진실을 아는 사람이 없는 경우
+		if(tNum == 0) {
 			System.out.println(m);
 			return;
-			
-		} else {
-			int com1 = Integer.parseInt(st.nextToken());
-			know[com1] = true;
-			
-			while(st.hasMoreTokens()) {
-				int com2 = Integer.parseInt(st.nextToken());
-				know[com2] = true;
-				
-				union(com1, com2);
-			}
+		}
+		
+		// 진실을 아는 사람이 있는 경우
+		int truth = Integer.parseInt(st.nextToken());
+		for (int i = 1; i < tNum; i++) {
+			union(truth, Integer.parseInt(st.nextToken()));
 		}
 		
 		List<int[]> party = new ArrayList<>();
 		for (int i = 0; i < m; i++) {
 			st = new StringTokenizer(br.readLine());
 			
-			int tot = Integer.parseInt(st.nextToken());
-			int[] tmp = new int[tot];
+			int pNum = Integer.parseInt(st.nextToken());
+			int[] tmp = new int[pNum];
 
-			for (int j = 0; j < tot; j++) {
-				tmp[j] = Integer.parseInt(st.nextToken());
-				union(tmp[0], tmp[j]);
+			int first = Integer.parseInt(st.nextToken());
+			tmp[0] = first;
+			for (int j = 1; j < pNum; j++) {
+				int second = Integer.parseInt(st.nextToken());
+				tmp[j] = second;
+				
+				union(first, second);
+				
 			}
 			
 			party.add(tmp);
@@ -54,21 +58,25 @@ public class Boj {
 		
 		int cnt = m;
 		for (int[] p : party) {
+			
 			for (int x : p) {
-				if (know[find(x)]) cnt--; break;
+				if (find(x) == find(truth)) {
+					cnt--; 
+					break;
+				}
 			}
 		}
 		
-		System.out.print(cnt);
+		System.out.println(cnt);
 	}
 	
 	
 	public static void union(int x, int y) {
-		int xx = find(x);
-		int yy = find(y);
+		x = find(x);
+		y = find(y);
 		
-		if(xx != yy) {
-			group[y] = xx;
+		if(x != y) {
+			group[y] = x;
 		}
 	}
 	
@@ -78,12 +86,7 @@ public class Boj {
 			return x;
 			
 		} else {
-			return find(group[x]);
+			return group[x] = find(group[x]);		// 경로 압축
 		}
 	}
 }
-
-/* * Union-Find 알고리즘 
- *   서로소 집합(Dis) 알고리즘
- *   여러 개의 노드가 존재할 때 두 개의 노드를 선택해서, 현재 이 노드가 같은 그래프에 속하는지 판별하는 알고리즘
-*/
