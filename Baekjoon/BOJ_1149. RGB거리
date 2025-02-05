@@ -1,0 +1,34 @@
+import java.util.*;
+import java.io.*;
+
+public class Main {
+	public static void main(String[] args) throws Exception {
+		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+		int n = Integer.parseInt(br.readLine());
+		int[][] rgb = new int[n][3]; 
+		
+		for (int i = 0; i < n; i++) {
+			StringTokenizer st = new StringTokenizer(br.readLine());
+			
+			rgb[i][0] = Integer.parseInt(st.nextToken());
+			rgb[i][1] = Integer.parseInt(st.nextToken());
+			rgb[i][2] = Integer.parseInt(st.nextToken());
+		}
+		
+		int[] r = new int[n];
+		int[] g = new int[n];
+		int[] b = new int[n];
+		
+		r[0] = rgb[0][0];
+		g[0] = rgb[0][1];
+		b[0] = rgb[0][2];
+		
+		for (int i = 1; i < n; i++) {
+			r[i] = Math.min(g[i-1], b[i-1]) + rgb[i][0];
+			g[i] = Math.min(r[i-1], b[i-1]) + rgb[i][1];
+			b[i] = Math.min(r[i-1], g[i-1]) + rgb[i][2];
+		}
+		
+		System.out.println(Math.min(r[n-1], Math.min(g[n-1], b[n-1])));
+	}
+}
