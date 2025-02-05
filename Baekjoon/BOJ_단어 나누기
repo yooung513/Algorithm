@@ -1,0 +1,27 @@
+import java.util.*;
+import java.io.*;
+
+public class Main {
+	public static void main(String[] args) throws Exception {
+		Scanner sc = new Scanner(System.in);
+		StringBuilder sb = new StringBuilder(sc.next());
+		List<String> word = new ArrayList<>();
+		
+		int n = sb.length();
+		for (int i = 1; i < n-1; i++) {
+			for (int j = i+1; j < n; j++) {
+				
+				StringBuilder first = new StringBuilder(sb.substring(0, i)).reverse();
+				StringBuilder second = new StringBuilder(sb.substring(i, j)).reverse();
+				StringBuilder third = new StringBuilder(sb.substring(j)).reverse();
+				
+				word.add(first.append(second).append(third).toString());
+			}
+		}
+		
+		word.sort(null);
+		System.out.println(word.get(0));
+		
+		sc.close();
+	}
+}
