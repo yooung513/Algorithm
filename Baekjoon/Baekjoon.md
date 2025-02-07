@@ -9,7 +9,7 @@
 - [x] 1309. [동물원](https://www.acmicpc.net/problem/1309) [dp]
 - [ ] 1446. [지름길](https://www.acmicpc.net/problem/1446)
 - [x] 1484. [다이어트](https://www.acmicpc.net/problem/1484)
-- [ ] 1599. [민식어](https://www.acmicpc.net/problem/1599)
+- [x] 1599. [민식어](https://www.acmicpc.net/problem/1599) 
 - [ ] 1654. [랜선 자르기](https://www.acmicpc.net/problem/1654)
 - [ ] 1743. [음식물 피하기](https://www.acmicpc.net/problem/1743)
 - [ ] 1913. [달팽이](https://www.acmicpc.net/problem/1913)    
