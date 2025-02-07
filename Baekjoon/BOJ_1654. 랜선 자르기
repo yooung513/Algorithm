@@ -1,0 +1,40 @@
+import java.io.*;
+import java.util.StringTokenizer;
+
+public class Main {
+    public static void main(String[] args) throws Exception {
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        StringTokenizer st = new StringTokenizer(br.readLine());
+        int k = Integer.parseInt(st.nextToken());
+        int n = Integer.parseInt(st.nextToken());
+
+        long s = 1;
+        long e = 1;
+
+        int[] line = new int[k];
+        for (int i = 0 ; i < k; i++) {
+            line[i] = Integer.parseInt(br.readLine());
+            e = Math.max(e, line[i]);
+        }
+
+        long length = 0;
+        while (s <= e) {
+            int cnt = 0;
+            long mid = (s + e) / 2;
+
+            for (int i = 0; i < k; i++) {
+                cnt += line[i] / mid;
+            }
+
+            if (cnt >= n) {
+                length = mid;
+                s = mid + 1;      // 자르는 길이의 가장 긴 값
+
+            } else {
+                e = mid - 1;
+            }
+        }
+
+        System.out.println(length);
+    }
+}
