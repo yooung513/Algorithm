@@ -1,0 +1,31 @@
+import java.util.*;
+import java.io.*;
+
+public class Main {
+	public static void main(String[] args) throws Exception {
+		// a b k d e g h i l m n ng o p r s t u w y
+		//     c				 n~
+    // Arrays.sort는 유니코드로 정렬
+    // ~은 알파벳보다 다음으로 인식되기 때문에 n~로 변경해준다.
+     
+
+		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+		int n = Integer.parseInt(br.readLine());
+
+		String[] dict = new String[n];
+		for (int i = 0; i < n; i++) {
+			String word = br.readLine();
+			word = word.replaceAll("k", "c").replaceAll("ng", "n~");
+			dict[i] = word;
+		}
+
+		Arrays.sort(dict);
+		StringBuilder sb = new StringBuilder();
+		for (String word : dict) {
+			word = word.replaceAll("c", "k").replaceAll("n~", "ng");
+			sb.append(word).append("\n");
+		}
+
+		System.out.println(sb.toString().trim());
+	}
+}
