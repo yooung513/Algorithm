@@ -13,7 +13,7 @@
 - [x] 1654. [랜선 자르기](https://www.acmicpc.net/problem/1654) [이분탐색]
 - [ ] 1743. [음식물 피하기](https://www.acmicpc.net/problem/1743)
 - [ ] 1913. [달팽이](https://www.acmicpc.net/problem/1913)    
-- [ ] 1931. [회의실 배정](https://www.acmicpc.net/problem/1931)    
+- [x] 1931. [회의실 배정](https://www.acmicpc.net/problem/1931) [그리디]
 - [ ] 1987. [알파벳](https://www.acmicpc.net/problem/1987)    
 
 - [ ] 2096. [내려가기](https://www.acmicpc.net/problem/2096)
