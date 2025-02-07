@@ -1,0 +1,55 @@
+import java.util.*;
+import java.io.*;
+
+public class Boj {
+	public static void main(String[] args) throws Exception {
+		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+		int n = Integer.parseInt(br.readLine());
+		Set<Character> key = new HashSet<>();
+		
+		for (int i = 0; i < n; i++) {
+			String[] input = br.readLine().split(" ");
+			boolean find = false;
+			StringBuilder sb = new StringBuilder();
+			
+			// 1. 단어의 첫 글자 확인
+			for (int x = 0; x < input.length; x++) {
+				char c = Character.toUpperCase(input[x].charAt(0));
+				
+				if(!key.contains(c)) {
+					key.add(c);
+					find = true;
+					sb.append("[").append(input[x].charAt(0)).append("]").append(input[x].substring(1));
+					input[x] = sb.toString();
+					break;
+				}
+			}
+			
+			// 2. 앞에서부터 확인
+			for (int x = 0; x < input.length; x++) {
+				if (!find) {
+					for (int y = 1; y < input[x].length(); y++) {
+						char c = Character.toUpperCase(input[x].charAt(y));
+						
+						if (!key.contains(c)) {
+							key.add(c);
+							find = true;
+							
+							sb.append(input[x].substring(0, y)).append("[").append(input[x].charAt(y)).append("]").append(input[x].substring(y+1));
+							input[x] = sb.toString();
+							break;
+						}
+					}
+				} else break;
+			}
+			
+			sb = new StringBuilder();
+			for (String data : input) {
+				sb.append(data).append(" ");
+			}
+			
+			System.out.println(sb.toString().trim());
+		}
+		
+	}
+}
