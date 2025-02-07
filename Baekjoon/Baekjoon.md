@@ -14,7 +14,7 @@
 - [ ] 1743. [음식물 피하기](https://www.acmicpc.net/problem/1743)
 - [ ] 1913. [달팽이](https://www.acmicpc.net/problem/1913)    
 - [x] 1931. [회의실 배정](https://www.acmicpc.net/problem/1931) [그리디]
-- [ ] 1987. [알파벳](https://www.acmicpc.net/problem/1987)    
+- [x] 1987. [알파벳](https://www.acmicpc.net/problem/1987) [백트래킹]
 
 - [ ] 2096. [내려가기](https://www.acmicpc.net/problem/2096)
 - [ ] 2156. [포도주 시식](https://www.acmicpc.net/problem/2156)
