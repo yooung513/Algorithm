@@ -1,0 +1,29 @@
+import java.util.*;
+
+public class Main {
+	public static void main(String[] args) throws Exception {
+		Scanner sc = new Scanner(System.in);
+		int n = sc.nextInt();
+		
+		int x = 2;
+		int y = 1; 
+		boolean find = false;
+		while (x > y) {
+			int weight = (x+y) * (x-y);    // 0인 경우 존재하지 않음
+			
+			if (weight <= n) {
+				if (weight == n) {
+					System.out.println(x);
+					find = true;
+				}
+				x++;
+				
+			} else {
+				y++;
+			}	
+		}
+		
+		if (!find) System.out.print(-1);
+		sc.close();
+	}
+}
