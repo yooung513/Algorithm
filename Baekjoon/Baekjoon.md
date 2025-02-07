@@ -10,7 +10,7 @@
 - [ ] 1446. [지름길](https://www.acmicpc.net/problem/1446)
 - [x] 1484. [다이어트](https://www.acmicpc.net/problem/1484)
 - [x] 1599. [민식어](https://www.acmicpc.net/problem/1599) 
-- [ ] 1654. [랜선 자르기](https://www.acmicpc.net/problem/1654)
+- [x] 1654. [랜선 자르기](https://www.acmicpc.net/problem/1654) [이분탐색]
 - [ ] 1743. [음식물 피하기](https://www.acmicpc.net/problem/1743)
 - [ ] 1913. [달팽이](https://www.acmicpc.net/problem/1913)    
 - [ ] 1931. [회의실 배정](https://www.acmicpc.net/problem/1931)    
