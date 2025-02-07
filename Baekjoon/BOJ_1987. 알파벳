@@ -1,0 +1,51 @@
+import java.util.*;
+import java.io.*;
+
+public class Main {
+	private static String[][] board;
+	private static int r;
+	private static int c;
+
+	private static Set<String> key;
+	private static int res;
+	private static int[] dx = new int[] {0, 1, 0, -1};
+	private static int[] dy = new int[] {1, 0, -1, 0};
+
+	public static void main(String[] args) throws Exception {
+		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+		StringTokenizer st = new StringTokenizer(br.readLine());
+		r = Integer.parseInt(st.nextToken());
+		c = Integer.parseInt(st.nextToken());
+
+		board = new String[r][c];
+		for (int i = 0; i < r; i++) {
+			String[] tmp = br.readLine().split("");
+
+			for (int j = 0; j < c; j++) {
+				board[i][j] = tmp[j];
+			}
+		}
+
+		key = new HashSet<>();
+		key.add(board[0][0]);
+		go(0, 0, 1);
+
+		System.out.println(res);
+	}
+
+	public static void go(int x, int y, int val) {
+		res = Math.max(res, val);
+		for (int i = 0; i < 4; i++) {
+			int xx = x + dx[i];
+			int yy = y + dy[i];
+
+			if (0 <= xx && xx < r && 0 <= yy && yy < c &&
+				!key.contains(board[xx][yy])) {
+
+				key.add(board[xx][yy]);
+				go(xx, yy, val + 1);
+				key.remove(board[xx][yy]);
+			}
+		}
+	}
+}
