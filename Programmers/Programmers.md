@@ -11,12 +11,13 @@
 - [ ] 17686. [파일명 정렬](https://school.programmers.co.kr/learn/courses/30/lessons/17686)
 
 - [ ] 42626. [더 맵게](https://school.programmers.co.kr/learn/courses/30/lessons/42626)    
-- [x] 42748. [K번째수](https://school.programmers.co.kr/learn/courses/30/lessons/42748)    
+- [x] 42748. [K번째수](https://school.programmers.co.kr/learn/courses/30/lessons/42748) [LV 1]
 - [ ] 42888. [오픈채팅방](https://school.programmers.co.kr/learn/courses/30/lessons/42888)
 - [ ] 42897. [같은 숫자는 싫어](https://school.programmers.co.kr/learn/courses/30/lessons/42897)    
 - [ ] 42898. [등굣길](https://school.programmers.co.kr/learn/courses/30/lessons/42898)    
 - [ ] 43162. [네트워크](https://school.programmers.co.kr/learn/courses/30/lessons/43162)    
-- [ ] 43163. [단어 변환](https://school.programmers.co.kr/learn/courses/30/lessons/43163)    
+- [ ] 43163. [단어 변환](https://school.programmers.co.kr/learn/courses/30/lessons/43163)
+- [ ] 43238. [입국심사](https://school.programmers.co.kr/learn/courses/30/lessons/43238) 
 
 - [ ] 60057. [문자열압축](https://school.programmers.co.kr/learn/courses/30/lessons/60057)    
 - [ ] 64065. [튜플](https://school.programmers.co.kr/learn/courses/30/lessons/64065)    
