@@ -64,4 +64,4 @@
 - [ ] 20055. [컨베이어 벨트 위의 로봇](https://www.acmicpc.net/problem/20055)
 - [ ] 21608. [상어 초등학교](https://www.acmicpc.net/problem/21608)
 - [ ] 30804. [과일 탕후루](https://www.acmicpc.net/problem/30804)
-- [ ] 30892. [상어 키우기](https://www.acmicpc.net/problem/30892)
+- [x] 30892. [상어 키우기](https://www.acmicpc.net/problem/30892) [실버 1] [그리디, 자료구조] ★
