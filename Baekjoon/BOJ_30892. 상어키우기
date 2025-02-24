@@ -1,0 +1,49 @@
+import java.util.*;
+import java.io.*;
+
+public class Main {
+	public static void main(String[] args) throws Exception {
+		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+		StringTokenizer st = new StringTokenizer(br.readLine());
+		int n = Integer.parseInt(st.nextToken());
+		int k = Integer.parseInt(st.nextToken());
+		long t = Integer.parseInt(st.nextToken());
+		
+		int[] shark = new int[n];
+		st = new StringTokenizer(br.readLine());
+		for (int i = 0; i < n; i++) {
+			shark[i] = Integer.parseInt(st.nextToken());
+		}
+		Arrays.sort(shark);
+		
+		Deque<Integer> small = new ArrayDeque<>();
+		Deque<Integer> large = new ArrayDeque<>();
+		for (int s : shark) {
+			if (t > s) {
+				small.addLast(s);
+				
+			} else {
+				large.addLast(s);
+			}
+		}
+		
+		int cnt = 0;
+		while (cnt < k && small.size() > 0) {
+			cnt++;
+			t += small.pollLast();
+			
+			while (large.size() > 0) {
+				int com = large.pollFirst();
+				if (t > com) {
+					small.addLast(com);
+					
+				} else {
+					large.addFirst(com);
+					break;
+				}
+			}
+		}
+		
+		System.out.println(t);
+	}
+}
