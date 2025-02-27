@@ -1,0 +1,21 @@
+import java.util.*;
+import java.io.*;
+
+public class Main {
+	public static void main(String[] args) throws Exception {
+		int[] change = new int[] {500, 100, 50, 10, 5, 1};
+		
+		Scanner sc = new Scanner(System.in);
+		int money = 1000 - sc.nextInt();
+		
+		int cnt = 0;
+		for (int i = 0; i < 6; i++) {
+			int tmpCount = money / change[i];
+			money -= (change[i] * tmpCount);
+			cnt += tmpCount;
+		}
+		
+		System.out.print(cnt);
+		sc.close();
+	}
+}
