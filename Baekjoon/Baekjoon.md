@@ -34,6 +34,7 @@
 - [ ] 2578. [빙고](https://www.acmicpc.net/problem/2578)
 - [x] 2869. [달팽이는 올라가고 싶다](https://www.acmicpc.net/problem/2869) [브론즈 1]
 
+- [ ] 5585. [거스름돈](https://www.acmicpc.net/problem/5585) [브론즈 2] [그리디]
 - [ ] 5648. [역원소 정렬](https://www.acmicpc.net/problem/5648)
 
 - [ ] 6603. [로또](https://www.acmicpc.net/problem/6603)
