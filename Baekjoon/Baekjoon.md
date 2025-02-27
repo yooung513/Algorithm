@@ -47,7 +47,8 @@
 - [ ] 10799. [쇠막대기](https://www.acmicpc.net/problem/10799)    
 - [ ] 10815. [숫자 카드](https://www.acmicpc.net/problem/10815)
 
-- [ ] 11053. [가장 긴 증가하는 부분 수열](https://www.acmicpc.net/problem/11053)    
+- [ ] 11047. [동전 0](https://www.acmicpc.net/problem/11047) [실버 4] [그리디]
+- [ ] 11053. [가장 긴 증가하는 부분 수열](https://www.acmicpc.net/problem/11053)
 - [ ] 11478. [체스판 다시 칠하기](https://www.acmicpc.net/problem/11478)    
 - [ ] 11725. [트리의 부모 찾기](https://www.acmicpc.net/problem/11725)
 - [ ] 12852. [1로 만들기 2](https://www.acmicpc.net/problem/12852)
