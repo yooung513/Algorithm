@@ -1,6 +1,7 @@
 ## 백준 문제 풀이
 
 - [x] 1018. [체스판 다시 칠하기](https://www.acmicpc.net/problem/1018) [실버 4] [브루트 포스]
+- [x] 1026. [보물](https://www.acmicpc.net/problem/1026) [실버 4] [그리디]
 - [x] 1043. [거짓말](https://www.acmicpc.net/problem/1043) [골드 4] [BFS, Union-Find]
 - [x] 1149. [RGB 거리](https://www.acmicpc.net/problem/1149) [실버 1] [dp]
 - [x] 1251. [단어 나누기](https://www.acmicpc.net/problem/1251) [실버 5] [StringBuilder]
@@ -18,7 +19,7 @@
 
 - [ ] 2096. [내려가기](https://www.acmicpc.net/problem/2096)
 - [ ] 2110. [공유기 설치](https://www.acmicpc.net/problem/2110)
-- [ ] 2217. [로프](https://www.acmicpc.net/problem/2217) [실버 4] [그리디]
+- [x] 2217. [로프](https://www.acmicpc.net/problem/2217) [실버 4] [그리디]
 - [ ] 2156. [포도주 시식](https://www.acmicpc.net/problem/2156)
 - [ ] 2229. [조짜기](https://www.acmicpc.net/problem/2229)
 - [ ] 2230. [수고르기](https://www.acmicpc.net/problem/2230)
