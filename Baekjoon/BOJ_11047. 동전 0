@@ -1,0 +1,27 @@
+import java.util.*;
+import java.io.*;
+
+public class Main {
+	public static void main(String[] args) throws Exception {
+		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+		StringTokenizer st = new StringTokenizer(br.readLine());
+		int n = Integer.parseInt(st.nextToken());
+		int k = Integer.parseInt(st.nextToken());
+		
+		Integer[] coin = new Integer[n];
+		for (int i = 0; i < n; i++) {
+			coin[i] = Integer.parseInt(br.readLine());
+		}
+		
+		Arrays.sort(coin, Collections.reverseOrder());
+		
+		int count = 0;
+		for (int i = 0; i < n; i++) {
+			int cnt = k / coin[i];
+			k -= (coin[i] * cnt);
+			count += cnt;
+		}
+		
+		System.out.println(count);
+	}
+}
