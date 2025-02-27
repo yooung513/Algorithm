@@ -34,7 +34,7 @@
 - [ ] 2578. [빙고](https://www.acmicpc.net/problem/2578)
 - [x] 2869. [달팽이는 올라가고 싶다](https://www.acmicpc.net/problem/2869) [브론즈 1]
 
-- [ ] 5585. [거스름돈](https://www.acmicpc.net/problem/5585) [브론즈 2] [그리디]
+- [x] 5585. [거스름돈](https://www.acmicpc.net/problem/5585) [브론즈 2] [그리디]
 - [ ] 5648. [역원소 정렬](https://www.acmicpc.net/problem/5648)
 
 - [ ] 6603. [로또](https://www.acmicpc.net/problem/6603)
@@ -47,7 +47,7 @@
 - [ ] 10799. [쇠막대기](https://www.acmicpc.net/problem/10799)    
 - [ ] 10815. [숫자 카드](https://www.acmicpc.net/problem/10815)
 
-- [ ] 11047. [동전 0](https://www.acmicpc.net/problem/11047) [실버 4] [그리디]
+- [x] 11047. [동전 0](https://www.acmicpc.net/problem/11047) [실버 4] [그리디]
 - [ ] 11053. [가장 긴 증가하는 부분 수열](https://www.acmicpc.net/problem/11053)
 - [ ] 11478. [체스판 다시 칠하기](https://www.acmicpc.net/problem/11478)    
 - [ ] 11725. [트리의 부모 찾기](https://www.acmicpc.net/problem/11725)
