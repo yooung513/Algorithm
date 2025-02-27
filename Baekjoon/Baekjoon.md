@@ -18,6 +18,7 @@
 
 - [ ] 2096. [내려가기](https://www.acmicpc.net/problem/2096)
 - [ ] 2110. [공유기 설치](https://www.acmicpc.net/problem/2110)
+- [ ] 2217. [로프](https://www.acmicpc.net/problem/2217) [실버 4] [그리디]
 - [ ] 2156. [포도주 시식](https://www.acmicpc.net/problem/2156)
 - [ ] 2229. [조짜기](https://www.acmicpc.net/problem/2229)
 - [ ] 2230. [수고르기](https://www.acmicpc.net/problem/2230)
