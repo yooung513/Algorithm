@@ -1,0 +1,32 @@
+import java.util.*;
+import java.io.*;
+
+public class Main {
+	public static void main(String[] args) throws Exception {
+		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+		int n = Integer.parseInt(br.readLine());
+		
+		Integer[] a = new Integer[n];
+		Integer[] b = new Integer[n];
+		for (int i = 0; i < 2; i++) {
+			StringTokenizer st = new StringTokenizer(br.readLine());
+			
+			for (int j = 0; j < n; j++) {
+				int data = Integer.parseInt(st.nextToken());
+				
+				if (i == 0) a[j] = data;
+				else 		b[j] = data;
+			}
+		}
+		
+		Arrays.sort(a, Comparator.reverseOrder());
+		Arrays.sort(b);
+		
+		int s = 0;
+		for (int i = 0; i < n; i++) {
+			s += a[i] * b[i];
+		}
+		
+		System.out.println(s);
+	}
+}
