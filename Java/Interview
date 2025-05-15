@@ -1,4 +1,4 @@
-package temp_dev;
+package [확인하기];
 
 import java.util.HashMap;
 import java.util.Map;
@@ -11,11 +11,10 @@ public class Interview {
 
 	public static void main(String[] args) throws Exception {
 		// 경험
-		setExperience();
-		printExperience();
+		// printExperience();
 
 		// 상황
-		// printSituation()
+		printSituation();
 		
 		System.out.println();
 		System.out.println();
@@ -25,6 +24,8 @@ public class Interview {
 	}
 
 	private static void printExperience() throws Exception {
+		setExperience();
+		
 		Random random = new Random();
 		int n = random.nextInt(125) + 1;
 
@@ -49,13 +50,15 @@ public class Interview {
 	}
 	
 	private static void printSituation() throws Exception {
+		checked = new boolean[101];
+		
 		Random random = new Random();
 		int n = random.nextInt(100) + 1;
 		
 		if (!checked[n]) {
 			System.out.println("***************************************");
 			System.out.println();
-			System.out.println(experience.get(n));
+			System.out.println(n);
 			System.out.println();
 			System.out.println("***************************************");
 			checked[n] = true;
